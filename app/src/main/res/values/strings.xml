@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Prontuario</string>
+
+    <!-- LoginActivity -->
+    <string name="login_button_text">login</string>
+    <string name="username_hint_text">Usuário</string>
+    <string name="password_hint_text">Senha</string>
+    <string name="invalid_login_message">Usuário ou senha inválida</string>
+    <string name="empty_login_fields_message">Necessário preencher os campos login e senha</string>
+</resources>
