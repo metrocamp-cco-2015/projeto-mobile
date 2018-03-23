@@ -7,4 +7,16 @@
     <string name="password_hint_text">Senha</string>
     <string name="invalid_login_message">Usuário ou senha inválida</string>
     <string name="empty_login_fields_message">Necessário preencher os campos login e senha</string>
+
+    <!-- MedSignupActivity -->
+    <string name="med_signup_cpf_hint_text">CPF</string>
+    <string name="med_signup_name_hint_text">Nome</string>
+    <string name="med_signup_crm_hint_text">CRM</string>
+    <string name="med_signup_email_hint_text">E-mail</string>
+    <string name="med_signup_phone_hint_text">Telefone</string>
+    <string name="med_signup_birthdate_hint_text">Data de Nascimento</string>
+    <string name="med_signup_password_hint_text">Senha</string>
+    <string name="med_signup_confirm_password_hint_text">Confirmar senha</string>
+    <string name="med_signup_gender_hint_text">Sexo</string>
+    <string name="med_signup_specialty_hint_text">Especialidade</string>
 </resources>
