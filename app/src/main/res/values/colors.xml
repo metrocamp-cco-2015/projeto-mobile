@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Base Colors -->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!-- Commons -->
     <color name="white">#ffffff</color>
     <color name="red">#cf2424</color>
+    <color name="blue">#0285ef</color>
 
     <color name="input_text_login_default">#bcffffff</color>
     <color name="button_login_default">#00ffffff</color>

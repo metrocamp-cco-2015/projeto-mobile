@@ -4,7 +4,28 @@
     <!-- LoginActivity -->
     <string name="login_button_text">login</string>
     <string name="username_hint_text">Usuário</string>
-    <string name="password_hint_text">Senha</string>
     <string name="invalid_login_message">Usuário ou senha inválida</string>
     <string name="empty_login_fields_message">Necessário preencher os campos login e senha</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- RegisterIdentificationActivity -->
+    <string name="register">Cadastro</string>
+    <string name="confirm_password">Confirmar senha</string>
+    <string name="man">Homem</string>
+    <string name="woman">Mulher</string>
+
+    <!-- Commons -->
+    <string name="complete_name">Nome completo</string>
+    <string name="password">Senha</string>
+    <string name="cpf">CPF</string>
+    <string name="email">Email</string>
+    <string name="birth_date">Data de nascimento</string>
+    <string name="gender">Sexo</string>
+    <string name="next">Próximo</string>
+
 </resources>

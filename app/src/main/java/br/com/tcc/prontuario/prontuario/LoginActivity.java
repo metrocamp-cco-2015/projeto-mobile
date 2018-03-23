@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.logging.Logger;
+
 public class LoginActivity extends AppCompatActivity {
 
     private void login(){
@@ -23,9 +25,18 @@ public class LoginActivity extends AppCompatActivity {
             validation.setText(getString(R.string.invalid_login_message));
             validation.setVisibility(View.VISIBLE);
         }else{
-            Intent home = new Intent(LoginActivity.this, LoginActivity.class);
-            startActivity(home);
+            try {
+                Intent home = new Intent(LoginActivity.this, LoginActivity.class);
+                startActivity(home);
+            }catch (Exception e){
+                Log.e("Login", "Error log: \n" + e);
+            }
         }
+    }
+
+    private void redirectToRegister(){
+        Intent register = new Intent(LoginActivity.this, RegisterIdentificationActivity.class);
+        startActivity(register);
     }
 
     private boolean validLogin(String user, String password){
@@ -57,11 +68,19 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         final Button buttonLogin = findViewById(R.id.login_button);
+        final Button buttonRegister = findViewById(R.id.register_button);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 login();
+            }
+        });
+
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                redirectToRegister();
             }
         });
     }

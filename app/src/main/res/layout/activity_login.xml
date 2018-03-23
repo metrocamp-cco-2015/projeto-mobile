@@ -20,11 +20,11 @@
 
         <EditText
             android:id="@+id/username_text"
-            android:layout_width="295dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/edit_text_default_width"
+            android:layout_height="@dimen/edit_text_default_height"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="116dp"
+            android:layout_marginTop="@dimen/edit_text_default_marginTop"
             android:hint="@string/username_hint_text"
             android:gravity="center"
             android:background="@color/input_text_login_default"
@@ -34,13 +34,13 @@
 
         <EditText
             android:id="@+id/password_text"
-            android:layout_width="295dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/edit_text_default_width"
+            android:layout_height="@dimen/edit_text_default_height"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:inputType="textPassword"
-            android:hint="@string/password_hint_text"
+            android:hint="@string/password"
             android:gravity="center"
             android:background="@color/input_text_login_default"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
 
         <Button
             android:id="@+id/login_button"
-            android:layout_width="160dp"
+            android:layout_width="@dimen/button_default_width"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -74,6 +74,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:background="@color/blue"
+            android:text="@string/register"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/validation_text" />
 
     </android.support.constraint.ConstraintLayout>
 </RelativeLayout>
