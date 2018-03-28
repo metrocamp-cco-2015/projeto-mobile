@@ -25,4 +25,5 @@
     <!-- Button labels -->
     <string name="next_button_text">continuar</string>
     <string name="sign_up_button_text">cadastre-se no app</string>
+    <string name="finish_sign_up_button_text">finalizar cadastro</string>
 </resources>

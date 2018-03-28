@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".MedSignupIdentification" />
         <activity android:name=".MedSignupPersonalData" />
-        <activity android:name=".MedSignupContact"></activity>
+        <activity android:name=".MedSignupContact" />
+        <activity android:name=".MedSignupPassword"></activity>
     </application>
 
 </manifest>
