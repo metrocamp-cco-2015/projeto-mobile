@@ -23,13 +23,13 @@ public class LoginActivity extends AppCompatActivity {
             validation.setText(getString(R.string.invalid_login_message));
             validation.setVisibility(View.VISIBLE);
         }else{
-            Intent home = new Intent(LoginActivity.this, MedSignupIdentification.class);
+            Intent home = new Intent(LoginActivity.this, MedSignupIdentificationActivity.class);
             startActivity(home);
         }
     }
 
     private void signup() {
-        Intent signupIntent = new Intent(LoginActivity.this, MedSignupIdentification.class);
+        Intent signupIntent = new Intent(LoginActivity.this, MedSignupIdentificationActivity.class);
         startActivity(signupIntent);
     }
 

@@ -16,10 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MedSignupIdentification" />
-        <activity android:name=".MedSignupPersonalData" />
-        <activity android:name=".MedSignupContact" />
-        <activity android:name=".MedSignupPassword"></activity>
+        <activity android:name=".MedSignupIdentificationActivity" />
+        <activity android:name=".MedSignupPersonalDataActivity" />
+        <activity android:name=".MedSignupContactActivity" />
+        <activity android:name=".MedSignupPasswordActivity"></activity>
     </application>
 
 </manifest>
