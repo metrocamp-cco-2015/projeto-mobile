@@ -19,6 +19,8 @@
     <string name="med_signup_confirm_password_hint_text">Confirmar senha</string>
     <string name="med_signup_gender_hint_text">Sexo</string>
     <string name="med_signup_specialty_hint_text">Especialidade</string>
+    <string name="med_signup_gender_female_text">Feminino</string>
+    <string name="med_signup_gender_male_text">Masculino</string>
 
     <!-- Button labels -->
     <string name="next_button_text">continuar</string>
