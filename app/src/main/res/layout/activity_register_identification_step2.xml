@@ -52,41 +52,43 @@
                 android:id="@+id/register_identification_man"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/man" />
+                android:text="@string/med_signup_gender_male_text" />
 
             <RadioButton
                 android:id="@+id/register_identification_woman"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/woman" />
+                android:text="@string/med_signup_gender_female_text" />
 
         </RadioGroup>
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <Button
                 android:id="@+id/register_back_button_step2"
                 android:layout_width="162dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/login_button"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/primary_button"
                 android:text="@string/back"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="15dp"/>
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/register_next_button_step2"
-                android:layout_width="@dimen/button_default_width"
+                android:layout_width="@dimen/button_default_small_width"
                 android:layout_height="wrap_content"
-                android:background="@color/blue"
-                android:text="@string/next"
+                android:background="@drawable/primary_button"
+                android:text="@string/next_button_text"
                 android:textAllCaps="true"
                 android:textColor="@color/white" />
         </LinearLayout>

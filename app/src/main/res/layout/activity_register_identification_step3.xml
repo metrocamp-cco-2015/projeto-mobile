@@ -53,27 +53,29 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/register_identification_confirm_password">
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <Button
                 android:id="@+id/register_back_button_step3"
                 android:layout_width="162dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/login_button"
+                android:background="@drawable/primary_button"
                 android:text="@string/back"
                 android:textAllCaps="true"
                 android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/register_next_button_step3"
-                android:layout_width="@dimen/button_default_width"
+                android:layout_width="@dimen/button_default_small_width"
                 android:layout_height="wrap_content"
-                android:background="@color/blue"
-                android:text="@string/next"
+                android:background="@drawable/primary_button"
+                android:text="@string/finish_sign_up_button_text"
                 android:textAllCaps="true"
                 android:textColor="@color/white" />
         </LinearLayout>

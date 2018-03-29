@@ -9,7 +9,7 @@ import android.widget.Button;
 public class RegisterIdentificationStep3Activity extends AppCompatActivity {
 
     private void nextPage(){
-        Intent homeActivity = new Intent(RegisterIdentificationStep3Activity.this, HomeActivity.class);
+        Intent homeActivity = new Intent(RegisterIdentificationStep3Activity.this, LoginActivity.class);
         startActivity(homeActivity);
     }
 

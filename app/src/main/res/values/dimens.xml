@@ -8,5 +8,6 @@
     <dimen name="edit_text_default_width">295dp</dimen>
     <dimen name="edit_text_default_height">45dp</dimen>
     <dimen name="edit_text_default_marginTop">116dp</dimen>
-    <dimen name="button_default_width">160dp</dimen>
+    <dimen name="button_default_width">230dp</dimen>
+    <dimen name="button_default_small_width">160dp</dimen>
 </resources>
