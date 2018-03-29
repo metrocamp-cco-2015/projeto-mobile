@@ -40,7 +40,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:hint="@string/med_signup_name_hint_text"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:maxLength="50"
             android:gravity="center"
             android:background="@color/input_text_login_default"

@@ -15,6 +15,9 @@ public class MedSignupPersonalDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_med_signup_personal_data);
 
+        EditText birthdateText = findViewById(R.id.med_signup_birthdate_text);
+        birthdateText.addTextChangedListener(EditTextMask.mask(birthdateText, EditTextMask.DATE));
+
         Button nextButton = findViewById(R.id.personal_data_next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
