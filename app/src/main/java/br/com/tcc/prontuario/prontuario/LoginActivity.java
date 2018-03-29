@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.logging.Logger;
-
 public class LoginActivity extends AppCompatActivity {
 
     private void login(){
@@ -25,12 +23,12 @@ public class LoginActivity extends AppCompatActivity {
             validation.setText(getString(R.string.invalid_login_message));
             validation.setVisibility(View.VISIBLE);
         }else{
-            Intent home = new Intent(LoginActivity.this, MedSignupIdentificationActivity.class);
+            Intent home = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(home);
         }
     }
 
-    private void signup() {
+    private void signupMed() {
         Intent signupIntent = new Intent(LoginActivity.this, MedSignupIdentificationActivity.class);
         startActivity(signupIntent);
             //try {
@@ -39,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
             //}catch (Exception e){
             //    Log.e("Login", "Error log: \n" + e);
             //}
-        }
     }
 
     private void redirectToRegister(){
@@ -73,8 +70,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         final Button buttonLogin = findViewById(R.id.login_button);
-        final Button signupButton = findViewById(R.id.signup_button);
-        //final Button buttonRegister = findViewById(R.id.register_button);
+        final Button signupMedButton = findViewById(R.id.signup_button);
+        final Button signupPacButton = findViewById(R.id.register_button);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,19 +79,19 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
-      
-        signupButton.setOnClickListener(new View.OnClickListener() {
+
+        signupMedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signup();
+                signupMed();
             }
-        }
+        });
 
-        //buttonRegister.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-        //        redirectToRegister();
-        //    }
-        //});
+        signupPacButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                redirectToRegister();
+            }
+        });
     }
 }
