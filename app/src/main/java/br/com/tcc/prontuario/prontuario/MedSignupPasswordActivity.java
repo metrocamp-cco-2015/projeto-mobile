@@ -52,7 +52,7 @@ public class MedSignupPasswordActivity extends AppCompatActivity {
                 errorMessage = getString(R.string.error_confirm_password);;
             }
         } else {
-            errorMessage = getString(R.string.empty_login_fields_message);;
+            errorMessage = getString(R.string.error_empty_fields);;
         }
 
         if (!errorMessage.isEmpty()) {

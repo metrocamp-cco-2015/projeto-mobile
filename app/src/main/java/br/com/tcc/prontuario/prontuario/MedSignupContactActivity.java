@@ -49,7 +49,7 @@ public class MedSignupContactActivity extends AppCompatActivity {
                 errorMessage = getString(R.string.error_invalid_email);
             }
         } else {
-            errorMessage = getString(R.string.empty_login_fields_message);
+            errorMessage = getString(R.string.error_empty_fields);
         }
 
         if (!errorMessage.isEmpty()) {
