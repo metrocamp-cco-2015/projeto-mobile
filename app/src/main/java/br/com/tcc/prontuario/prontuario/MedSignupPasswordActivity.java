@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MedSignupPasswordActivity extends AppCompatActivity {
 
@@ -26,8 +28,37 @@ public class MedSignupPasswordActivity extends AppCompatActivity {
         /**
          *  Criar a tela de DASHBOARD
          */
-        Intent intent = new Intent(MedSignupPasswordActivity.this,
-                LoginActivity.class);
-        startActivity(intent);
+        if (validateFields()) {
+            Intent intent = new Intent(MedSignupPasswordActivity.this,
+                    LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private boolean validateFields() {
+        EditText passwordText = findViewById(R.id.med_signup_password_text);
+        EditText confirmPasswordText = findViewById(R.id.med_signup_confirm_password_text);
+
+        String errorMessage = "";
+        String password = passwordText.getText().toString();
+        String confirmPassword = confirmPasswordText.getText().toString();
+        boolean result = false;
+
+        if (!Validator.isFieldEmpty(password) &&
+                !Validator.isFieldEmpty(confirmPassword)) {
+            if (Validator.validatePassword(password, confirmPassword)) {
+                result = true;
+            } else {
+                errorMessage = getString(R.string.error_confirm_password);;
+            }
+        } else {
+            errorMessage = getString(R.string.empty_login_fields_message);;
+        }
+
+        if (!errorMessage.isEmpty()) {
+            Toast.makeText(this.getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+        }
+
+        return result;
     }
 }

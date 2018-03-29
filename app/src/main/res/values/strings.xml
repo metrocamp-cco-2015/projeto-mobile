@@ -26,4 +26,11 @@
     <string name="next_button_text">continuar</string>
     <string name="sign_up_button_text">cadastre-se no app</string>
     <string name="finish_sign_up_button_text">finalizar cadastro</string>
+
+    <!-- Error messages -->
+    <string name="error_empty_fields">Preencha todos os campos</string>
+    <string name="error_invalid_email">Email inválido</string>
+    <string name="error_invalid_cpf">CPF inválido</string>
+    <string name="error_confirm_password">Confirme sua senha corretamente</string>
+    <string name="error_invalid_date">Data inválida</string>
 </resources>
