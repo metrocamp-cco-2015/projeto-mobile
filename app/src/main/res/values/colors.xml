@@ -4,8 +4,10 @@
     <color name="colorPrimaryDark">#31A983</color>
     <color name="colorAccent">#39d2df</color>
 
+    <!-- Commons -->
     <color name="white">#ffffff</color>
     <color name="red">#cf2424</color>
+    <color name="blue">#0285ef</color>
 
     <color name="input_text_login_default">#bcffffff</color>
     <color name="button_login_default">#00ffffff</color>
