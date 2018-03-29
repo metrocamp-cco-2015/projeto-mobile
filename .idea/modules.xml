@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Prontuario.iml" filepath="$PROJECT_DIR$/Prontuario.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\1510031171\Documents\projeto-mobile\app\app.iml" filepath="C:\Users\1510031171\Documents\projeto-mobile\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projeto-mobile.iml" filepath="$PROJECT_DIR$/projeto-mobile.iml" />
+      <module fileurl="file://C:\Users\1510031171\Documents\projeto-mobile\projeto-mobile.iml" filepath="C:\Users\1510031171\Documents\projeto-mobile\projeto-mobile.iml" />
     </modules>
   </component>
 </project>

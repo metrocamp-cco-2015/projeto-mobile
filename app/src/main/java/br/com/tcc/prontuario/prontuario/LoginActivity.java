@@ -25,12 +25,20 @@ public class LoginActivity extends AppCompatActivity {
             validation.setText(getString(R.string.invalid_login_message));
             validation.setVisibility(View.VISIBLE);
         }else{
-            try {
-                Intent home = new Intent(LoginActivity.this, LoginActivity.class);
-                startActivity(home);
-            }catch (Exception e){
-                Log.e("Login", "Error log: \n" + e);
-            }
+            Intent home = new Intent(LoginActivity.this, MedSignupIdentificationActivity.class);
+            startActivity(home);
+        }
+    }
+
+    private void signup() {
+        Intent signupIntent = new Intent(LoginActivity.this, MedSignupIdentificationActivity.class);
+        startActivity(signupIntent);
+            //try {
+            //    Intent home = new Intent(LoginActivity.this, LoginActivity.class);
+            //    startActivity(home);
+            //}catch (Exception e){
+            //    Log.e("Login", "Error log: \n" + e);
+            //}
         }
     }
 
@@ -42,24 +50,21 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validLogin(String user, String password){
         if(user.equals("admin") && password.equals("admin")){
             Log.d("[DEBUG]", "login valid " + user);
-            return Boolean.TRUE;
+            return true;
         }
 
-        return Boolean.FALSE;
+        return false;
     }
 
     private boolean emptyFields(String user, String password){
-
-
         if(user == null || user.isEmpty()){
-            return Boolean.TRUE;
+            return true;
         }
-
         if(password == null || password.isEmpty()){
-            return Boolean.TRUE;
+            return true;
         }
 
-        return Boolean.FALSE;
+        return false;
     }
 
     @Override
@@ -68,7 +73,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         final Button buttonLogin = findViewById(R.id.login_button);
-        final Button buttonRegister = findViewById(R.id.register_button);
+        final Button signupButton = findViewById(R.id.signup_button);
+        //final Button buttonRegister = findViewById(R.id.register_button);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,12 +82,19 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
-
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
+      
+        signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                redirectToRegister();
+                signup();
             }
-        });
+        }
+
+        //buttonRegister.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View view) {
+        //        redirectToRegister();
+        //    }
+        //});
     }
 }
