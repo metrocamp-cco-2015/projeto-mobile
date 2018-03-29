@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MedSignupIdentificationActivity extends AppCompatActivity {
 
@@ -24,9 +26,45 @@ public class MedSignupIdentificationActivity extends AppCompatActivity {
     }
 
     private void nextScreen() {
-        Intent intent = new Intent(MedSignupIdentificationActivity.this,
-                MedSignupContactActivity.class);
-        startActivity(intent);
+        if (validateFields()) {
+            Intent intent = new Intent(MedSignupIdentificationActivity.this,
+                    MedSignupContactActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private boolean validateFields() {
+        EditText cpfText = findViewById(R.id.med_signup_cpf_text);
+        EditText nameText = findViewById(R.id.med_signup_name_text);
+        EditText crmText = findViewById(R.id.med_signup_crm_text);
+
+        String errorMessage = "";
+        String cpf = cpfText.getText().toString();
+        String name = nameText.getText().toString();
+        String crm = crmText.getText().toString();
+        boolean result = false;
+
+        if (!isFieldEmpty(cpf) &&
+                !isFieldEmpty(name) &&
+                !isFieldEmpty(crm)) {
+            if (validateCpf(cpfText.getText().toString())) {
+                result = true;
+            } else {
+                errorMessage = "CPF inválido";
+            }
+        } else {
+            errorMessage = "Preencha todos os campos";
+        }
+
+        if (!errorMessage.isEmpty()) {
+            Toast.makeText(this.getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+        }
+
+        return result;
+    }
+
+    private boolean isFieldEmpty(String text) {
+        return text.isEmpty();
     }
 
     private boolean validateCpf(String cpf) {
