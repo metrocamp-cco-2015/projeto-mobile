@@ -15,17 +15,18 @@
 
     <!-- RegisterIdentificationActivity -->
     <string name="register">Cadastro</string>
-    <string name="confirm_password">Confirmar senha</string>
     <string name="man">Homem</string>
     <string name="woman">Mulher</string>
 
     <!-- Commons -->
     <string name="complete_name">Nome completo</string>
+    <string name="confirm_password">Confirmar senha</string>
     <string name="password">Senha</string>
     <string name="cpf">CPF</string>
     <string name="email">Email</string>
     <string name="birth_date">Data de nascimento</string>
     <string name="gender">Sexo</string>
     <string name="next">Próximo</string>
+    <string name="back">Voltar</string>
 
 </resources>

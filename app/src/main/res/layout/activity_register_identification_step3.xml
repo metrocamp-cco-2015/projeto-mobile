@@ -16,68 +16,66 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="br.com.tcc.prontuario.prontuario.RegisterIdentificationActivity">
+        tools:context="br.com.tcc.prontuario.prontuario.RegisterIdentificationStep3Activity">
 
         <EditText
-            android:id="@+id/register_name"
+            android:id="@+id/register_identification_password"
             android:layout_width="@dimen/edit_text_default_width"
             android:layout_height="@dimen/edit_text_default_height"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="@dimen/edit_text_default_marginTop"
-            android:hint="@string/complete_name"
             android:background="@color/input_text_login_default"
             android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <EditText
-            android:id="@+id/register_email"
-            android:layout_width="@dimen/edit_text_default_width"
-            android:layout_height="@dimen/edit_text_default_height"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:hint="@string/email"
-            android:background="@color/input_text_login_default"
-            android:gravity="center"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_name" />
-
-        <EditText
-            android:id="@+id/register_cpf"
-            android:layout_width="@dimen/edit_text_default_width"
-            android:layout_height="@dimen/edit_text_default_height"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:hint="@string/cpf"
-            android:background="@color/input_text_login_default"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="11"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_email" />
-
-        <Button
-            android:id="@+id/register_button_step1"
-            android:layout_width="@dimen/button_default_width"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/next"
+            android:hint="@string/password"
             android:textAllCaps="true"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_cpf"
-            android:background="@color/blue"
-            android:textColor="@color/white"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <EditText
+            android:id="@+id/register_identification_confirm_password"
+            android:layout_width="@dimen/edit_text_default_width"
+            android:layout_height="@dimen/edit_text_default_height"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/input_text_login_default"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_identification_password" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/register_identification_confirm_password">
+
+            <Button
+                android:id="@+id/register_back_button_step3"
+                android:layout_width="162dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/login_button"
+                android:text="@string/back"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/register_next_button_step3"
+                android:layout_width="@dimen/button_default_width"
+                android:layout_height="wrap_content"
+                android:background="@color/blue"
+                android:text="@string/next"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
+        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
-
 </RelativeLayout>
