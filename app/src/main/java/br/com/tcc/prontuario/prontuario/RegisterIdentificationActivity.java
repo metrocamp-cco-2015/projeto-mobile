@@ -5,12 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class RegisterIdentificationActivity extends AppCompatActivity {
 
     private void redirectToRegisterStep2(){
-        Intent registerStep2 = new Intent(RegisterIdentificationActivity.this, RegisterIdentificationStep2Activity.class);
-        startActivity(registerStep2);
+        if (validateFields()) {
+            Intent registerStep2 = new Intent(RegisterIdentificationActivity.this, RegisterIdentificationStep2Activity.class);
+            startActivity(registerStep2);
+        }
     }
 
     @Override
@@ -26,5 +30,39 @@ public class RegisterIdentificationActivity extends AppCompatActivity {
                 redirectToRegisterStep2();
             }
         });
+    }
+
+    private boolean validateFields() {
+        EditText cpfText = findViewById(R.id.register_cpf);
+        EditText nameText = findViewById(R.id.register_name);
+        EditText emailText = findViewById(R.id.register_email);
+
+        String errorMessage = "";
+        String cpf = cpfText.getText().toString();
+        String name = nameText.getText().toString();
+        String email = emailText.getText().toString();
+        boolean result = true;
+
+        if (!Validator.isFieldEmpty(cpf) &&
+                !Validator.isFieldEmpty(name) &&
+                !Validator.isFieldEmpty(email)) {
+            if (!Validator.validateCpf(cpf)) {
+                result = false;
+                errorMessage = getString(R.string.error_invalid_cpf);
+            }
+            if (!Validator.validateEmail(email)) {
+                result = false;
+                errorMessage = getString(R.string.error_invalid_email);
+            }
+        } else {
+            result = false;
+            errorMessage = getString(R.string.error_empty_fields);
+        }
+
+        if (!errorMessage.isEmpty()) {
+            Toast.makeText(this.getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+        }
+
+        return result;
     }
 }

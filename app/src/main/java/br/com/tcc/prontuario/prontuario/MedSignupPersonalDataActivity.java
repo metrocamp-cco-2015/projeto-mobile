@@ -48,10 +48,10 @@ public class MedSignupPersonalDataActivity extends AppCompatActivity {
             if (Validator.validateDate(birthdate)) {
                 result = true;
             } else {
-                errorMessage = getString(R.string.error_invalid_date);;
+                errorMessage = getString(R.string.error_invalid_date);
             }
         } else {
-            errorMessage = getString(R.string.error_empty_fields);;
+            errorMessage = getString(R.string.error_empty_fields);
         }
 
         if (!errorMessage.isEmpty()) {

@@ -50,10 +50,10 @@ public class MedSignupIdentificationActivity extends AppCompatActivity {
             if (Validator.validateCpf(cpfText.getText().toString())) {
                 result = true;
             } else {
-                errorMessage = getString(R.string.error_invalid_cpf);;
+                errorMessage = getString(R.string.error_invalid_cpf);
             }
         } else {
-            errorMessage = getString(R.string.error_empty_fields);;
+            errorMessage = getString(R.string.error_empty_fields);
         }
 
         if (!errorMessage.isEmpty()) {

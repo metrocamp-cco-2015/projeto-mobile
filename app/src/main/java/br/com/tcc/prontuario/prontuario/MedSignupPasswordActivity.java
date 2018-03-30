@@ -49,10 +49,10 @@ public class MedSignupPasswordActivity extends AppCompatActivity {
             if (Validator.validatePassword(password, confirmPassword)) {
                 result = true;
             } else {
-                errorMessage = getString(R.string.error_confirm_password);;
+                errorMessage = getString(R.string.error_confirm_password);
             }
         } else {
-            errorMessage = getString(R.string.error_empty_fields);;
+            errorMessage = getString(R.string.error_empty_fields);
         }
 
         if (!errorMessage.isEmpty()) {
