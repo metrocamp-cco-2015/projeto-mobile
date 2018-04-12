@@ -26,6 +26,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="@dimen/edit_text_default_marginTop"
             android:hint="@string/complete_name"
+            android:inputType="text"
             android:background="@color/input_text_login_default"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"

@@ -5,23 +5,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class RegisterIdentificationStep2Activity extends AppCompatActivity {
 
     private void nextPage(){
-        Intent registerStep3 = new Intent(RegisterIdentificationStep2Activity.this, RegisterIdentificationStep3Activity.class);
-        startActivity(registerStep3);
+        if (validateFields()) {
+            Intent intent = new Intent(RegisterIdentificationStep2Activity.this,
+                    RegisterIdentificationStep3Activity.class);
+            startActivity(intent);
+        }
     }
     
     private void backPage(){
-        Intent registerStep1 = new Intent(RegisterIdentificationStep2Activity.this, RegisterIdentificationActivity.class);
-        startActivity(registerStep1);
+        onBackPressed();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_identification_step2);
+
+        EditText birthdateText = findViewById(R.id.register_identification_birth_date);
+        birthdateText.addTextChangedListener(EditTextMask.mask(birthdateText, EditTextMask.DATE));
 
         final Button nextPageButton = findViewById(R.id.register_next_button_step2);
         final Button backPageButton = findViewById(R.id.register_back_button_step2);
@@ -40,5 +47,31 @@ public class RegisterIdentificationStep2Activity extends AppCompatActivity {
                 backPage();
             }
         });
+    }
+
+    private boolean validateFields() {
+        EditText birthdateText = findViewById(R.id.register_identification_birth_date);
+
+        /* TODO Validate Gender */
+
+        String errorMessage = "";
+        String birthdate = birthdateText.getText().toString();
+        boolean result = false;
+
+        if (!Validator.isFieldEmpty(birthdate)) {
+            if (Validator.validateDate(birthdate)) {
+                result = true;
+            } else {
+                errorMessage = getString(R.string.error_invalid_date);
+            }
+        } else {
+            errorMessage = getString(R.string.error_empty_fields);
+        }
+
+        if (!errorMessage.isEmpty()) {
+            Toast.makeText(this.getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+        }
+
+        return result;
     }
 }

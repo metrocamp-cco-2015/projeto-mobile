@@ -5,17 +5,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class RegisterIdentificationStep3Activity extends AppCompatActivity {
 
     private void nextPage(){
-        Intent homeActivity = new Intent(RegisterIdentificationStep3Activity.this, LoginActivity.class);
-        startActivity(homeActivity);
+        if (validateFields()) {
+            Intent intent = new Intent(RegisterIdentificationStep3Activity.this,
+                    LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void backPage(){
-        Intent registerStep2 = new Intent(RegisterIdentificationStep3Activity.this, RegisterIdentificationStep2Activity.class);
-        startActivity(registerStep2);
+        onBackPressed();
     }
 
     @Override
@@ -39,5 +43,32 @@ public class RegisterIdentificationStep3Activity extends AppCompatActivity {
                 backPage();
             }
         });
+    }
+
+    private boolean validateFields() {
+        EditText passwordText = findViewById(R.id.register_identification_password);
+        EditText confirmPasswordText = findViewById(R.id.register_identification_confirm_password);
+
+        String errorMessage = "";
+        String password = passwordText.getText().toString();
+        String confirmPassword = confirmPasswordText.getText().toString();
+        boolean result = false;
+
+        if (!Validator.isFieldEmpty(password) &&
+                !Validator.isFieldEmpty(confirmPassword)) {
+            if (Validator.validatePassword(password, confirmPassword)) {
+                result = true;
+            } else {
+                errorMessage = getString(R.string.error_confirm_password);
+            }
+        } else {
+            errorMessage = getString(R.string.error_empty_fields);
+        }
+
+        if (!errorMessage.isEmpty()) {
+            Toast.makeText(this.getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+        }
+
+        return result;
     }
 }
