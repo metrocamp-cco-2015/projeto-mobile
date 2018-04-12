@@ -8,6 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -69,9 +76,37 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        CallbackManager callbackManager = CallbackManager.Factory.create();
+
         final Button buttonLogin = findViewById(R.id.login_button);
         final Button signupMedButton = findViewById(R.id.signup_button);
         final Button signupPacButton = findViewById(R.id.register_button);
+        LoginButton facebookLoginButton = findViewById(R.id.login_button_facebook);
+
+        facebookLoginButton.setReadPermissions("email");
+
+        facebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
+                        .show();
+                Log.i("FACEBOOK_LOGIN", loginResult.toString());
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(getApplicationContext(), "LOGIN CANCELADO!", Toast.LENGTH_LONG)
+                        .show();
+                Log.i("FACEBOOK_LOGIN", "LOGIN CANCELADO!");
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                Toast.makeText(getApplicationContext(), "ALGO DEU ERRADO!", Toast.LENGTH_LONG)
+                        .show();
+                Log.i("FACEBOOK_LOGIN", exception.getMessage());
+            }
+        });
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override

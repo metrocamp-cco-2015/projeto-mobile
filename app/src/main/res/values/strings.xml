@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Prontuario</string>
 
+    <!-- Facebook -->
+
+    <string name="facebook_app_id">603964403308123</string>
+    <string name="fb_login_protocol_scheme">fb603964403308123</string>
+
     <!-- LoginActivity -->
     <string name="login_button_text">login</string>
     <string name="username_hint_text">Usuário</string>
