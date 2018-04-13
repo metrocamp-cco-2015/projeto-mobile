@@ -18,6 +18,8 @@ import com.facebook.login.widget.LoginButton;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private CallbackManager callbackManager;
+
     private void login(){
         EditText user = findViewById(R.id.username_text);
         EditText password = findViewById(R.id.password_text);
@@ -72,11 +74,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        CallbackManager callbackManager = CallbackManager.Factory.create();
+        callbackManager = CallbackManager.Factory.create();
 
         final Button buttonLogin = findViewById(R.id.login_button);
         final Button signupMedButton = findViewById(R.id.signup_button);
