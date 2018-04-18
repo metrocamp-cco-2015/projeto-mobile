@@ -10,11 +10,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -91,14 +96,24 @@ public class LoginActivity extends AppCompatActivity {
         final Button signupPacButton = findViewById(R.id.register_button);
         LoginButton facebookLoginButton = findViewById(R.id.login_button_facebook);
 
-        facebookLoginButton.setReadPermissions("email");
+        facebookLoginButton.setReadPermissions("email", "public_profile", "user_birthday");
 
         facebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
                         .show();
-                Log.i("FACEBOOK_LOGIN", loginResult.toString());
+                Log.i("FACEBOOK_LOGIN", "LOGADO COM SUCESSO!");
+
+                loadFacebookProfileData(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(
+                            JSONObject object,
+                            GraphResponse response) {
+                        response.getError();
+                        Log.e("FACEBOOK_JSON", object.toString());
+                    }
+                });
             }
 
             @Override
@@ -136,5 +151,17 @@ public class LoginActivity extends AppCompatActivity {
                 redirectToRegister();
             }
         });
+    }
+
+    /*
+        https://developers.facebook.com/docs/facebook-login/permissions#reference
+     */
+    private void loadFacebookProfileData(AccessToken accessToken, GraphRequest.GraphJSONObjectCallback callback) {
+        GraphRequest request = GraphRequest.newMeRequest(
+                accessToken, callback);
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,link,email,picture,gender,birthday");
+        request.setParameters(parameters);
+        request.executeAsync();
     }
 }
