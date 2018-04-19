@@ -45,12 +45,6 @@ public class LoginActivity extends AppCompatActivity {
     private void signupMed() {
         Intent signupIntent = new Intent(LoginActivity.this, MedSignupIdentificationActivity.class);
         startActivity(signupIntent);
-            //try {
-            //    Intent home = new Intent(LoginActivity.this, LoginActivity.class);
-            //    startActivity(home);
-            //}catch (Exception e){
-            //    Log.e("Login", "Error log: \n" + e);
-            //}
     }
 
     private void redirectToRegister(){
@@ -164,4 +158,9 @@ public class LoginActivity extends AppCompatActivity {
         request.setParameters(parameters);
         request.executeAsync();
     }
+
+    /*
+        Google Sign-in
+        https://developers.google.com/identity/sign-in/android/start-integrating
+     */
 }
