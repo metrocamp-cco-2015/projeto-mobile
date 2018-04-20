@@ -18,12 +18,20 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
     private CallbackManager callbackManager;
+    private GoogleSignInClient mGoogleSignInClient;
 
     private void login(){
         EditText user = findViewById(R.id.username_text);
@@ -75,6 +83,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -89,6 +101,9 @@ public class LoginActivity extends AppCompatActivity {
         final Button signupMedButton = findViewById(R.id.signup_button);
         final Button signupPacButton = findViewById(R.id.register_button);
         LoginButton facebookLoginButton = findViewById(R.id.login_button_facebook);
+        SignInButton googleLoginButton = findViewById(R.id.login_button_google);
+
+        // Facebook
 
         facebookLoginButton.setReadPermissions("email", "public_profile", "user_birthday");
 
@@ -125,6 +140,24 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Google
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestIdToken("628518171498-vr0pk53j3ia6gvm8k8t1t53i901u1id9.apps.googleusercontent.com")
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
+        googleLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("LOGIN_GOOGLE", "TESTANDO 1");
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, 100);
+            }
+        });
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,6 +178,20 @@ public class LoginActivity extends AppCompatActivity {
                 redirectToRegister();
             }
         });
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            String mensagem = "NAO";
+            if (account != null) {
+                mensagem = account.getEmail();
+            }
+            Log.i("LOGIN_GOOGLE", "TESTANDO 2");
+            Log.i("LOGIN_GOOGLE", mensagem);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /*
