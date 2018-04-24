@@ -23,7 +23,10 @@ public class LoginActivity extends AppCompatActivity {
             validation.setText(getString(R.string.invalid_login_message));
             validation.setVisibility(View.VISIBLE);
         }else{
-            Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+            /*
+               HomeActivity
+             */
+            Intent home = new Intent(LoginActivity.this, MapsActivity.class);
             startActivity(home);
         }
     }
