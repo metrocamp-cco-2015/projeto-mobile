@@ -56,4 +56,5 @@
     <string name="next">Próximo</string>
     <string name="back">Voltar</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps_current_place">Map Current Place</string>
 </resources>
