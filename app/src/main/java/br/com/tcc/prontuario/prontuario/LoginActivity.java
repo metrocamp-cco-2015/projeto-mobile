@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
             /*
                HomeActivity
              */
-            Intent home = new Intent(LoginActivity.this, MapsActivity.class);
+            Intent home = new Intent(LoginActivity.this, MapsTest.class);
             startActivity(home);
         }
     }

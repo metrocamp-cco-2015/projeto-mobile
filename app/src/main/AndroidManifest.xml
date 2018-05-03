@@ -58,9 +58,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".MapsActivityCurrentPlace"
-            android:label="@string/title_activity_maps_current_place"></activity>
+        <activity android:name=".MapsTest"></activity>
     </application>
 
 </manifest>
