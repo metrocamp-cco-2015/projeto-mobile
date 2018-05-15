@@ -37,7 +37,7 @@
     <string name="error_invalid_cpf">CPF inválido</string>
     <string name="error_confirm_password">Confirme sua senha corretamente</string>
     <string name="error_invalid_date">Data inválida</string>
-  
+
     <string name="title_activity_home">HomeActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -60,4 +60,6 @@
     <string name="gender">Sexo</string>
     <string name="next">Próximo</string>
     <string name="back">Voltar</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps_current_place">Map Current Place</string>
 </resources>
