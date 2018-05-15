@@ -1,8 +1,10 @@
 package br.com.tcc.prontuario.prontuario;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -22,6 +30,56 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Bundle bundle = getIntent().getExtras();
+
+        JSONObject json = null;
+
+        try {
+            json = new JSONObject(bundle.getString("login_data", "{}"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Log.e("FACEBOOK_JSON", json.getString("id"));
+            Log.e("FACEBOOK_JSON", json.getString("url"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ImageView imgProfile = findViewById(R.id.profile_image);
+        TextView txtName = findViewById(R.id.name_text);
+        TextView txtEmail = findViewById(R.id.email_text);
+        TextView txtBirthdate = findViewById(R.id.birthdate_text);
+        String profileImageUrl = "";
+
+//        try {
+//            profileImageUrl = json.getString("url");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//        Glide.with(this).load(profileImageUrl).into(imgProfile);
+
+        try {
+            txtName.setText(json.getString("name"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            txtEmail.setText(json.getString("email"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            txtBirthdate.setText(json.getString("birthday"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

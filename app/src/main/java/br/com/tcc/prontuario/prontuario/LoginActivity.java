@@ -45,9 +45,15 @@ public class LoginActivity extends AppCompatActivity {
             validation.setText(getString(R.string.invalid_login_message));
             validation.setVisibility(View.VISIBLE);
         }else{
-            Intent home = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(home);
+            openHome("");
         }
+    }
+
+    private void openHome(String extra) {
+        Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+        if (extra != "")
+            home.putExtra("login_data", extra);
+        startActivity(home);
     }
 
     private void signupMed() {
@@ -121,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                             GraphResponse response) {
                         response.getError();
                         Log.e("FACEBOOK_JSON", object.toString());
+                        openHome(object.toString());
                     }
                 });
             }
