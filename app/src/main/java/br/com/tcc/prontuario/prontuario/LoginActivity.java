@@ -26,7 +26,12 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -121,18 +126,66 @@ public class LoginActivity extends AppCompatActivity {
         facebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
-                        .show();
                 Log.i("FACEBOOK_LOGIN", "LOGADO COM SUCESSO!");
 
                 loadFacebookProfileData(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(
-                            JSONObject object,
+                            final JSONObject object,
                             GraphResponse response) {
                         response.getError();
                         Log.e("FACEBOOK_JSON", object.toString());
-                        openHome(object.toString());
+
+                        String name = "", email = "", birthdate = "", fbid = "";
+
+                        try {
+                            fbid = object.getString("id");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        try {
+                            name = object.getString("name");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        try {
+                            email = object.getString("email");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        try {
+                            birthdate = object.getString("birthday");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        Log.i("DADOS", fbid);
+                        Pacient pacient = new Pacient(name, email, birthdate, fbid);
+                        Call<Pacient> call = new RetrofitConfig().getServices().signinPacientByFacebook(pacient);
+
+                        call.enqueue(new Callback<Pacient>() {
+                            @Override
+                            public void onResponse(Call<Pacient> call, Response<Pacient> response) {
+                                Log.i("RESPOSTA", String.valueOf(response.isSuccessful()));
+                                if (response.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
+                                            .show();
+                                    Log.i("MENSAGEM", response.body().getMsg());
+                                    openHome(object.toString());
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Erro - Response", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Pacient> call, Throwable t) {
+                                Log.e("RESPOSTA   ", "Erro:" + t.getMessage());
+                                Toast.makeText(getApplicationContext(), "Erro - Failure", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 });
             }
