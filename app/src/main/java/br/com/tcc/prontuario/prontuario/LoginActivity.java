@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             validation.setText(getString(R.string.invalid_login_message));
             validation.setVisibility(View.VISIBLE);
         }else{
-            openHome("");
+            openHomeMed();
         }
     }
 
@@ -54,6 +54,11 @@ public class LoginActivity extends AppCompatActivity {
         if (extra != "")
             home.putExtra("login_data", extra);
         startActivity(home);
+    }
+
+    private void openHomeMed() {
+        Intent homeMed = new Intent(LoginActivity.this, MapsTest.class);
+        startActivity(homeMed);
     }
 
     private void signupMed() {
@@ -67,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validLogin(String user, String password){
-        if(user.equals("admin") && password.equals("admin")){
+        if(user.equals("11163") && password.equals("11163")){
             Log.d("[DEBUG]", "login valid " + user);
             return true;
         }
@@ -148,22 +153,22 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // Google
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .requestIdToken("628518171498-vr0pk53j3ia6gvm8k8t1t53i901u1id9.apps.googleusercontent.com")
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
-        googleLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("LOGIN_GOOGLE", "TESTANDO 1");
-                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, 100);
-            }
-        });
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .requestIdToken("628518171498-vr0pk53j3ia6gvm8k8t1t53i901u1id9.apps.googleusercontent.com")
+//                .build();
+//
+//        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+//
+//        googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
+//        googleLoginButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.i("LOGIN_GOOGLE", "TESTANDO 1");
+//                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+//                startActivityForResult(signInIntent, 100);
+//            }
+//        });
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
