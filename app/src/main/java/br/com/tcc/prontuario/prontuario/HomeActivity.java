@@ -17,10 +17,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -109,8 +114,51 @@ public class HomeActivity extends AppCompatActivity
                 e.printStackTrace();
             }
         } else {
-            ConstraintLayout regularLayout = findViewById(R.id.regular_data_layout);
-            regularLayout.setVisibility(View.VISIBLE);
+
+            final TextView txtName = findViewById(R.id.name_text);
+            final TextView txtEmail = findViewById(R.id.email_text);
+            final TextView txtBirthdate = findViewById(R.id.birthdate_text);
+            final TextView txtCpf = findViewById(R.id.cpf_text);
+            final TextView txtGender = findViewById(R.id.gender_text);
+            final TextView txtPhone = findViewById(R.id.phone_text);
+            final TextView txtMaps = findViewById(R.id.maps_text);
+
+            String crm = bundle.getString("medico");
+
+            Log.i("CRM", crm);
+
+            Medic medic = new Medic();
+            medic.setCrm(crm);
+
+            Call<Medic> call = new RetrofitConfig().getServices().getMedicByFacebook(medic);
+
+            call.enqueue(new Callback<Medic>() {
+                @Override
+                public void onResponse(Call<Medic> call, Response<Medic> response) {
+                    if (response.isSuccessful()) {
+                        Medic medic = response.body();
+
+                        txtName.setText(medic.getName() != null ? medic.getName() : "EMPTY");
+                        txtEmail.setText(medic.getEmail() != null ? medic.getEmail() : "EMPTY");
+                        txtBirthdate.setText(medic.getBirthdate() != null ? medic.getBirthdate() : "EMPTY");
+                        txtCpf.setText(medic.getCrm() != null ? medic.getCrm() : "EMPTY");
+                        txtGender.setText(medic.getGender() != null ? medic.getGender() : "EMPTY");
+                        txtPhone.setText(medic.getPhoneNumber() != null ? medic.getPhoneNumber() : "EMPTY");
+                        txtMaps.setText(medic.getMaps() != null ? medic.getMaps() : "EMPTY");
+
+                        Log.e("DEU_BOM", medic.getCrm());
+
+                        ConstraintLayout regularLayout = findViewById(R.id.regular_data_layout);
+                        regularLayout.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Medic> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "FALHA", Toast.LENGTH_LONG).show();
+                    Log.e("DEU_RUIM", t.getMessage());
+                }
+            });
         }
     }
 

@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             validation.setText(getString(R.string.invalid_login_message));
             validation.setVisibility(View.VISIBLE);
         }else{
-
+            openHomeMed();
         }
     }
 
@@ -63,7 +63,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void openHomeMed() {
-        Intent homeMed = new Intent(LoginActivity.this, MapsTest.class);
+        EditText user = findViewById(R.id.username_text);
+        String crm = user.getText().toString();
+
+        Intent homeMed = new Intent(LoginActivity.this, HomeActivity.class);
+
+        homeMed.putExtra("medico", crm);
         startActivity(homeMed);
     }
 
@@ -78,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validLogin(String user, String password){
-        if(user.equals("11163") && password.equals("11163")){
+        if(user.equals("11111") && password.equals("11111")){
             Log.d("[DEBUG]", "login valid " + user);
             return true;
         }
