@@ -13,5 +13,8 @@ public interface Services {
     Call<Pacient> signinPacientByFacebook(@Body Pacient pacient);
 
     @POST("medico/crm")
-    Call<Medic> getMedicByFacebook(@Body Medic medic);
+    Call<Medic> getMedicByCrm(@Body Medic medic);
+
+    @POST("medico/maps/add")
+    Call<Medic> addMedicMaps(@Body Medic medic);
 }

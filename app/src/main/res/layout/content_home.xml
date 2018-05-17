@@ -157,5 +157,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phone_text" />
 
+        <Button
+            android:id="@+id/maps_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Adicionar local de trabalho"
+            app:layout_constraintTop_toBottomOf="@+id/maps_text" />
+
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
