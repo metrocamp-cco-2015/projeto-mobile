@@ -54,10 +54,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void openHome(String extra) {
+    private void openHome(String extra, boolean facebook) {
         Intent home = new Intent(LoginActivity.this, HomeActivity.class);
         if (extra != "")
             home.putExtra("login_data", extra);
+        home.putExtra("facebook_login", facebook);
         startActivity(home);
     }
 
@@ -174,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
                                             .show();
                                     Log.i("MENSAGEM", response.body().getMsg());
-                                    openHome(object.toString());
+                                    openHome(object.toString(), true);
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Erro - Response", Toast.LENGTH_LONG).show();
                                 }

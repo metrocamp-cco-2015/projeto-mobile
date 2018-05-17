@@ -2,6 +2,7 @@ package br.com.tcc.prontuario.prontuario;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -56,25 +57,30 @@ public class HomeActivity extends AppCompatActivity
 
     private void facebookHandler(Bundle bundle) {
         JSONObject json = null;
+        boolean isFacebookLogin = bundle.getBoolean("facebook_login");
 
-        try {
-            json = new JSONObject(bundle.getString("login_data", "{}"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        if (isFacebookLogin) {
+            try {
+                json = new JSONObject(bundle.getString("login_data", "{}"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-        try {
-            Log.e("FACEBOOK_JSON", json.getString("id"));
-            Log.e("FACEBOOK_JSON", json.getString("url"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            try {
+                Log.e("FACEBOOK_JSON", json.getString("id"));
+                Log.e("FACEBOOK_JSON", json.getString("url"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-        ImageView imgProfile = findViewById(R.id.profile_image);
-        TextView txtName = findViewById(R.id.name_text);
-        TextView txtEmail = findViewById(R.id.email_text);
-        TextView txtBirthdate = findViewById(R.id.birthdate_text);
-        String profileImageUrl = "";
+            ConstraintLayout facebookLayout = findViewById(R.id.facebook_data_layout);
+            ImageView imgProfile = findViewById(R.id.profile_image_facebook);
+            TextView txtName = findViewById(R.id.name_text_facebook);
+            TextView txtEmail = findViewById(R.id.email_text_facebook);
+            TextView txtBirthdate = findViewById(R.id.birthdate_text_facebook);
+            String profileImageUrl = "";
+
+            facebookLayout.setVisibility(View.VISIBLE);
 
 //        try {
 //            profileImageUrl = json.getString("url");
@@ -85,22 +91,26 @@ public class HomeActivity extends AppCompatActivity
 //
 //        Glide.with(this).load(profileImageUrl).into(imgProfile);
 
-        try {
-            txtName.setText(json.getString("name"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            try {
+                txtName.setText(json.getString("name"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-        try {
-            txtEmail.setText(json.getString("email"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            try {
+                txtEmail.setText(json.getString("email"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-        try {
-            txtBirthdate.setText(json.getString("birthday"));
-        } catch (JSONException e) {
-            e.printStackTrace();
+            try {
+                txtBirthdate.setText(json.getString("birthday"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            ConstraintLayout regularLayout = findViewById(R.id.regular_data_layout);
+            regularLayout.setVisibility(View.VISIBLE);
         }
     }
 
