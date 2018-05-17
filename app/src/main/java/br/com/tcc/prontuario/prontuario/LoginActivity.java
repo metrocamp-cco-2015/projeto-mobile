@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             validation.setText(getString(R.string.invalid_login_message));
             validation.setVisibility(View.VISIBLE);
         }else{
-            openHomeMed();
+
         }
     }
 
@@ -205,7 +205,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Google
+//        // Google
 //        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 //                .requestEmail()
 //                .requestIdToken("628518171498-vr0pk53j3ia6gvm8k8t1t53i901u1id9.apps.googleusercontent.com")
