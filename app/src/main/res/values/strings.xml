@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Prontuario</string>
 
+    <!-- Shared Preferences Keys -->
+    <string name="pref_key">prontuario_beta_shared_key</string>
+    <string name="user_type">user_type</string>
+    <string name="user_id">user_id</string>
+    <string name="user_id_type">user_id_type</string>
+
     <!-- Facebook -->
 
     <string name="facebook_app_id">603964403308123</string>

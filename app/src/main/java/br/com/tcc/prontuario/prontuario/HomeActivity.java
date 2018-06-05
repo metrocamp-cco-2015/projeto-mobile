@@ -67,6 +67,15 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Button medic_profile_button = findViewById(R.id.medic_profile_button);
+        medic_profile_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, MedicProfileActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

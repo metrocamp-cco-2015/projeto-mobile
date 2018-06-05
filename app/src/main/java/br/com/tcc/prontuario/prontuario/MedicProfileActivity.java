@@ -1,6 +1,7 @@
 package br.com.tcc.prontuario.prontuario;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -12,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +23,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,95 +44,40 @@ public class MedicProfileActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medic_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        Bundle bundle = getIntent().getExtras();
-
-        facebookHandler(bundle);
+        handleFields();
     }
 
-    private void facebookHandler(Bundle bundle) {
-        JSONObject json = null;
-        boolean isFacebookLogin = bundle.getBoolean("facebook_login");
+    private void handleFields() {
+        final TextView txtName = findViewById(R.id.name_text);
+        final TextView txtEmail = findViewById(R.id.email_text);
+        final TextView txtBirthdate = findViewById(R.id.birthdate_text);
+        final TextView txtCpf = findViewById(R.id.cpf_text);
+        final TextView txtGender = findViewById(R.id.gender_text);
+        final TextView txtPhone = findViewById(R.id.phone_text);
+        final TextView txtMaps = findViewById(R.id.maps_text);
 
-        if (isFacebookLogin) {
-            try {
-                json = new JSONObject(bundle.getString("login_data", "{}"));
-            } catch (JSONException e) {
-                e.printStackTrace();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .enableAutoManage(this, this)
+                .build();
+
+        Button mapButton = findViewById(R.id.maps_button);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getLocationPermission();
             }
+        });
 
-            try {
-                Log.e("FACEBOOK_JSON", json.getString("id"));
-                Log.e("FACEBOOK_JSON", json.getString("url"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
 
-            ConstraintLayout facebookLayout = findViewById(R.id.facebook_data_layout);
-            ImageView imgProfile = findViewById(R.id.profile_image_facebook);
-            TextView txtName = findViewById(R.id.name_text_facebook);
-            TextView txtEmail = findViewById(R.id.email_text_facebook);
-            TextView txtBirthdate = findViewById(R.id.birthdate_text_facebook);
-            String profileImageUrl = "";
+        String crm = sharedPreferences.getString(getString(R.string.user_id), "");
 
-            facebookLayout.setVisibility(View.VISIBLE);
+        Log.i("CRM", crm);
 
-//        try {
-//            profileImageUrl = json.getString("url");
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//        Glide.with(this).load(profileImageUrl).into(imgProfile);
-
-            try {
-                txtName.setText(json.getString("name"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                txtEmail.setText(json.getString("email"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                txtBirthdate.setText(json.getString("birthday"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-            final TextView txtName = findViewById(R.id.name_text);
-            final TextView txtEmail = findViewById(R.id.email_text);
-            final TextView txtBirthdate = findViewById(R.id.birthdate_text);
-            final TextView txtCpf = findViewById(R.id.cpf_text);
-            final TextView txtGender = findViewById(R.id.gender_text);
-            final TextView txtPhone = findViewById(R.id.phone_text);
-            final TextView txtMaps = findViewById(R.id.maps_text);
-
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .addApi(Places.GEO_DATA_API)
-                    .addApi(Places.PLACE_DETECTION_API)
-                    .enableAutoManage(this, this)
-                    .build();
-
-            Button mapButton = findViewById(R.id.maps_button);
-            mapButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    getLocationPermission();
-                }
-            });
-
-
-            String crm = bundle.getString("medico");
-
-            Log.i("CRM", crm);
+        if (crm != "") {
 
             Medic medic = new Medic();
             medic.setCrm(crm);
@@ -169,6 +111,9 @@ public class MedicProfileActivity extends AppCompatActivity
                     Log.e("DEU_RUIM", t.getMessage());
                 }
             });
+        } else {
+            Toast.makeText(this.getApplicationContext(),
+                    "Não foi possível recuperar as informações", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -190,8 +135,11 @@ public class MedicProfileActivity extends AppCompatActivity
                 Place place = PlacePicker.getPlace(data, this);
                 String toastMsg = String.format("Place: %s", place.getName());
 
+                SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
+                String crm = sharedPreferences.getString(getString(R.string.user_id), "");
+
                 Medic medic = new Medic();
-                medic.setCrm(getIntent().getExtras().getString("medico"));
+                medic.setCrm(crm);
                 medic.setMaps(place.getName().toString());
 
                 Call<Medic> call = new RetrofitConfig().getServices().addMedicMaps(medic);

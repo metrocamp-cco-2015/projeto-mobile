@@ -1,6 +1,7 @@
 package br.com.tcc.prontuario.prontuario;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -68,7 +69,11 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent homeMed = new Intent(LoginActivity.this, HomeActivity.class);
 
-        homeMed.putExtra("medico", crm);
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getString(R.string.user_id), crm);
+        editor.apply();
+
         startActivity(homeMed);
     }
 
