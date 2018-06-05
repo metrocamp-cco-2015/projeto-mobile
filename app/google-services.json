@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "628518171498",
+    "firebase_url": "https://prontuariobeta-1524180784500.firebaseio.com",
+    "project_id": "prontuariobeta-1524180784500",
+    "storage_bucket": "prontuariobeta-1524180784500.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628518171498:android:70c23bd2fb11aaa0",
+        "android_client_info": {
+          "package_name": "br.com.tcc.prontuario.prontuario"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628518171498-n1pojihjk9su3qg5d26penb66tmi52va.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "628518171498-vehg9u9gpeamallaiqml92pjpb7jnuc6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.tcc.prontuario.prontuario",
+            "certificate_hash": "ef60dd73048f56402e6a90e933160990032a325e"
+          }
+        },
+        {
+          "client_id": "628518171498-vr0pk53j3ia6gvm8k8t1t53i901u1id9.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "628518171498-n1pojihjk9su3qg5d26penb66tmi52va.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDXGEdDXx1Dxx8MhZ-FLy2K0m-fv5CML8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628518171498-n1pojihjk9su3qg5d26penb66tmi52va.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
