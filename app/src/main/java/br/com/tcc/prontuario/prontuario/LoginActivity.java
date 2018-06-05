@@ -255,11 +255,18 @@ public class LoginActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             String mensagem = "NAO";
-            if (account != null) {
-                mensagem = account.getEmail();
+            if (account == null) {
+                Log.i("LOGIN_GOOGLE", mensagem);
+            } else {
+                Log.i("LOGIN_GOOGLE", "TESTANDO 2");
+
+                Log.i("LOGIN_GOOGLE_EMAIL", account.getEmail());
+                Log.i("LOGIN_GOOGLE_DISPLAY", account.getDisplayName());
+                Log.i("LOGIN_GOOGLE_FAMILY", account.getFamilyName());
+                Log.i("LOGIN_GOOGLE_GIVEN", account.getGivenName());
+                Log.i("LOGIN_GOOGLE_ID", account.getId());
+                Log.i("LOGIN_GOOGLE_PHOTO", account.getPhotoUrl().toString());
             }
-            Log.i("LOGIN_GOOGLE", "TESTANDO 2");
-            Log.i("LOGIN_GOOGLE", mensagem);
         } catch (Exception e) {
             e.printStackTrace();
         }
