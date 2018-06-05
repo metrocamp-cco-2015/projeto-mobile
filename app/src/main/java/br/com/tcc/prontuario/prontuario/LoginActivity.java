@@ -51,15 +51,16 @@ public class LoginActivity extends AppCompatActivity {
             validation.setText(getString(R.string.invalid_login_message));
             validation.setVisibility(View.VISIBLE);
         }else{
-            openHomeMed();
+            if (isMedic()) {
+                openHomeMed();
+            } else if (isPacient()) {
+                openHomePacient();
+            }
         }
     }
 
-    private void openHome(String extra, boolean facebook) {
+    private void openHomePacient() {
         Intent home = new Intent(LoginActivity.this, HomeActivity.class);
-        if (extra != "")
-            home.putExtra("login_data", extra);
-        home.putExtra("facebook_login", facebook);
         startActivity(home);
     }
 
@@ -88,12 +89,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validLogin(String user, String password){
-        if(user.equals("11111") && password.equals("11111")){
-            Log.d("[DEBUG]", "login valid " + user);
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     private boolean emptyFields(String user, String password){
@@ -185,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
                                             .show();
                                     Log.i("MENSAGEM", response.body().getMsg());
-                                    openHome(object.toString(), true);
+                                    openHomePacient();
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Erro - Response", Toast.LENGTH_LONG).show();
                                 }
@@ -289,8 +285,15 @@ public class LoginActivity extends AppCompatActivity {
         request.executeAsync();
     }
 
-    /*
-        Google Sign-in
-        https://developers.google.com/identity/sign-in/android/start-integrating
-     */
+    private boolean isPacient() {
+        EditText user = findViewById(R.id.username_text);
+        String text = user.getText().toString();
+        return Validator.validateCpf(text);
+    }
+
+    private boolean isMedic() {
+        EditText user = findViewById(R.id.username_text);
+        String text = user.getText().toString();
+        return text.length() == 5;
+    }
 }
