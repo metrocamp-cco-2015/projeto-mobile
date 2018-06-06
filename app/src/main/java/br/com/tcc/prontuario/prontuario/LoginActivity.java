@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(home);
     }
 
-    private void openHomePacientByFacebook(String email) {
+    private void openHomePacientBySocialNetwork(String email) {
         Intent home = new Intent(LoginActivity.this, HomeActivity.class);
         Log.e("EMAIL", email);
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
@@ -206,7 +206,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
                                             .show();
                                     Log.i("MENSAGEM", response.body().getMsg());
-                                    openHomePacientByFacebook(pacient.getEmail());
+                                    openHomePacientBySocialNetwork(pacient.getEmail());
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Erro - Response", Toast.LENGTH_LONG).show();
                                 }
@@ -240,7 +240,7 @@ public class LoginActivity extends AppCompatActivity {
         // Google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
-                .requestIdToken("628518171498-vr0pk53j3ia6gvm8k8t1t53i901u1id9.apps.googleusercontent.com")
+                .requestIdToken("628518171498-n1pojihjk9su3qg5d26penb66tmi52va.apps.googleusercontent.com")
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -285,13 +285,37 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i("LOGIN_GOOGLE", mensagem);
             } else {
                 Log.i("LOGIN_GOOGLE", "TESTANDO 2");
-
                 Log.i("LOGIN_GOOGLE_EMAIL", account.getEmail());
                 Log.i("LOGIN_GOOGLE_DISPLAY", account.getDisplayName());
                 Log.i("LOGIN_GOOGLE_FAMILY", account.getFamilyName());
                 Log.i("LOGIN_GOOGLE_GIVEN", account.getGivenName());
                 Log.i("LOGIN_GOOGLE_ID", account.getId());
                 Log.i("LOGIN_GOOGLE_PHOTO", account.getPhotoUrl().toString());
+
+                final PacientGoogle pacient = new PacientGoogle(account.getDisplayName(),
+                        account.getEmail(), account.getId());
+                Call<PacientGoogle> call = new RetrofitConfig().getServices().signinPacientByGoogle(pacient);
+
+                call.enqueue(new Callback<PacientGoogle>() {
+                    @Override
+                    public void onResponse(Call<PacientGoogle> call, Response<PacientGoogle> response) {
+                        Log.i("RESPOSTA", String.valueOf(response.isSuccessful()));
+                        if (response.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
+                                    .show();
+                            Log.i("MENSAGEM", response.body().getMsg());
+                            openHomePacientBySocialNetwork(pacient.getEmail());
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Erro - Response", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PacientGoogle> call, Throwable t) {
+                        Log.e("RESPOSTA   ", "Erro:" + t.getMessage());
+                        Toast.makeText(getApplicationContext(), "Erro - Failure", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         } catch (Exception e) {
             e.printStackTrace();
