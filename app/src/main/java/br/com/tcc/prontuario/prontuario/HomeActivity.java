@@ -1,6 +1,7 @@
 package br.com.tcc.prontuario.prontuario;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -68,14 +69,36 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Button medic_profile_button = findViewById(R.id.medic_profile_button);
-        medic_profile_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, MedicProfileActivity.class);
-                startActivity(intent);
-            }
-        });
+        handleButtons();
+    }
+
+    private void handleButtons() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
+        int userType = sharedPreferences.getInt(getString(R.string.user_type), -1);
+
+        if (userType == SharedPreferencesKeysManager.MEDIC_USER_TYPE) {
+
+            Button medic_profile_button = findViewById(R.id.medic_profile_button);
+            medic_profile_button.setVisibility(View.VISIBLE);
+            medic_profile_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(HomeActivity.this, MedicProfileActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+        } else if (userType == SharedPreferencesKeysManager.PACIENT_USER_TYPE) {
+            Button pacient_profile_button = findViewById(R.id.pacient_profile_button);
+            pacient_profile_button.setVisibility(View.VISIBLE);
+            pacient_profile_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(HomeActivity.this, PacientProfileActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override

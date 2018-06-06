@@ -10,10 +10,16 @@ import retrofit2.http.POST;
 
 public interface Services {
     @POST("paciente/facebook/new")
-    Call<Pacient> signinPacientByFacebook(@Body Pacient pacient);
+    Call<PacientFacebook> signinPacientByFacebook(@Body PacientFacebook pacient);
 
     @POST("medico/crm")
     Call<Medic> getMedicByCrm(@Body Medic medic);
+
+    @POST("paciente/cpf")
+    Call<Pacient> getPacientByCpf(@Body Pacient pacient);
+
+    @POST("paciente/email")
+    Call<Pacient> getPacientByEmail(@Body Pacient pacient);
 
     @POST("medico/maps/add")
     Call<Medic> addMedicMaps(@Body Medic medic);

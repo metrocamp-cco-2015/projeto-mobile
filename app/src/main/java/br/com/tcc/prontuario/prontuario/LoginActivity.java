@@ -60,7 +60,30 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void openHomePacient() {
+        EditText user = findViewById(R.id.username_text);
+        String cpf = user.getText().toString();
         Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getString(R.string.user_id), cpf);
+        editor.putInt(getString(R.string.user_type), SharedPreferencesKeysManager.PACIENT_USER_TYPE);
+        editor.putInt(getString(R.string.user_id_type), SharedPreferencesKeysManager.CPF);
+        editor.apply();
+
+        startActivity(home);
+    }
+
+    private void openHomePacientByFacebook(String email) {
+        Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+        Log.e("EMAIL", email);
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getString(R.string.user_id), email);
+        editor.putInt(getString(R.string.user_type), SharedPreferencesKeysManager.PACIENT_USER_TYPE);
+        editor.putInt(getString(R.string.user_id_type), SharedPreferencesKeysManager.EMAIL);
+        editor.apply();
+
         startActivity(home);
     }
 
@@ -73,6 +96,8 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(getString(R.string.user_id), crm);
+        editor.putInt(getString(R.string.user_type), SharedPreferencesKeysManager.MEDIC_USER_TYPE);
+        editor.putInt(getString(R.string.user_id_type), SharedPreferencesKeysManager.CRM);
         editor.apply();
 
         startActivity(homeMed);
@@ -170,25 +195,25 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         Log.i("DADOS", fbid);
-                        Pacient pacient = new Pacient(name, email, birthdate, fbid);
-                        Call<Pacient> call = new RetrofitConfig().getServices().signinPacientByFacebook(pacient);
+                        final PacientFacebook pacient = new PacientFacebook(name, email, birthdate, fbid);
+                        Call<PacientFacebook> call = new RetrofitConfig().getServices().signinPacientByFacebook(pacient);
 
-                        call.enqueue(new Callback<Pacient>() {
+                        call.enqueue(new Callback<PacientFacebook>() {
                             @Override
-                            public void onResponse(Call<Pacient> call, Response<Pacient> response) {
+                            public void onResponse(Call<PacientFacebook> call, Response<PacientFacebook> response) {
                                 Log.i("RESPOSTA", String.valueOf(response.isSuccessful()));
                                 if (response.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
                                             .show();
                                     Log.i("MENSAGEM", response.body().getMsg());
-                                    openHomePacient();
+                                    openHomePacientByFacebook(pacient.getEmail());
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Erro - Response", Toast.LENGTH_LONG).show();
                                 }
                             }
 
                             @Override
-                            public void onFailure(Call<Pacient> call, Throwable t) {
+                            public void onFailure(Call<PacientFacebook> call, Throwable t) {
                                 Log.e("RESPOSTA   ", "Erro:" + t.getMessage());
                                 Toast.makeText(getApplicationContext(), "Erro - Failure", Toast.LENGTH_LONG).show();
                             }

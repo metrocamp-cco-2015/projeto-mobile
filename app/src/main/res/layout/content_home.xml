@@ -13,5 +13,13 @@
        android:id="@+id/medic_profile_button"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
+       android:visibility="gone"
        android:text="Perfil Medico"/>
+
+   <Button
+       android:id="@+id/pacient_profile_button"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:visibility="gone"
+       android:text="Perfil Paciente"/>
 </android.support.constraint.ConstraintLayout>
