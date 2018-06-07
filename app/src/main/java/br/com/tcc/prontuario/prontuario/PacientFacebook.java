@@ -13,6 +13,7 @@ public class PacientFacebook {
     private String email;
     private String birthdate;
     private String fbId;
+    private String image;
     private String msg;
 
     public String getMsg() {
@@ -26,11 +27,12 @@ public class PacientFacebook {
     public PacientFacebook() {
     }
 
-    public PacientFacebook(String name, String email, String birthdate, String fbId) {
+    public PacientFacebook(String name, String email, String birthdate, String fbId, String image) {
         this.name = name;
         this.email = email;
         this.birthdate = birthdate;
         this.fbId = fbId;
+        this.image = image;
     }
 
     public String getName() {
@@ -65,6 +67,14 @@ public class PacientFacebook {
         this.fbId = fbId;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "PacientFacebook{" +
@@ -73,6 +83,7 @@ public class PacientFacebook {
                 ", birthdate='" + birthdate + '\'' +
                 ", fbId='" + fbId + '\'' +
                 ", msg='" + msg + '\'' +
+                ", image='" + image+ '\'' +
                 '}';
     }
 }

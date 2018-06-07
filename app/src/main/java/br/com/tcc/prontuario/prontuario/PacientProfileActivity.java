@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -60,6 +61,7 @@ public class PacientProfileActivity extends AppCompatActivity {
         final TextView txtCpf = findViewById(R.id.cpf_text);
         final TextView txtGender = findViewById(R.id.gender_text);
         final TextView txtPhone = findViewById(R.id.phone_text);
+        final ImageView profileImage = findViewById(R.id.profile_image);
 
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
 
@@ -120,6 +122,12 @@ public class PacientProfileActivity extends AppCompatActivity {
                             txtCpf.setText(pacient.getCpf() != null ? pacient.getCpf() : "EMPTY");
                             txtGender.setText(pacient.getGender() != null ? pacient.getGender() : "EMPTY");
                             txtPhone.setText(pacient.getPhoneNumber() != null ? pacient.getPhoneNumber() : "EMPTY");
+//                            if (pacient.getImage() != null ) {
+//                                Glide
+//                                        .with(PacientProfileActivity.this.getApplicationContext())
+//                                        .load(pacient.getImage())
+//                                        .into(profileImage);
+//                            }
 
                             Log.e("DEU_BOM", pacient.getCpf());
 

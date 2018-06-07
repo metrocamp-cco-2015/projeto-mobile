@@ -8,6 +8,7 @@ public class PacientGoogle {
     private String name;
     private String email;
     private String googleid;
+    private String image;
     private String msg;
 
     public String getMsg() {
@@ -21,10 +22,11 @@ public class PacientGoogle {
     public PacientGoogle() {
     }
 
-    public PacientGoogle(String name, String email, String googleid) {
+    public PacientGoogle(String name, String email, String googleid, String image) {
         this.name = name;
         this.email = email;
         this.googleid = googleid;
+        this.image = image;
     }
 
     public String getName() {
@@ -43,12 +45,20 @@ public class PacientGoogle {
         this.email = email;
     }
 
-    public String getGoogleId() {
+    public String getGoogleid() {
         return googleid;
     }
 
-    public void setGoogleId(String googleid) {
+    public void setGoogleid(String googleid) {
         this.googleid = googleid;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
@@ -58,6 +68,7 @@ public class PacientGoogle {
                 ", email='" + email + '\'' +
                 ", googleid='" + googleid + '\'' +
                 ", msg='" + msg + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

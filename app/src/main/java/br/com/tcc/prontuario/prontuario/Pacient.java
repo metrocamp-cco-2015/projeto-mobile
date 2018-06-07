@@ -15,6 +15,8 @@ public class Pacient {
     private String password;
     private String phoneNumber;
     private String gender;
+    private String googleid;
+    private String image;
 
     public Pacient () {
 
@@ -76,7 +78,7 @@ public class Pacient {
         this.gender = gender;
     }
 
-    public Pacient(String cpf, String email, String name, String birthdate, String password, String phoneNumber, String gender, String maps) {
+    public Pacient(String cpf, String email, String name, String birthdate, String password, String phoneNumber, String gender, String googleid, String image) {
         this.cpf = cpf;
         this.email = email;
         this.name = name;
@@ -84,6 +86,24 @@ public class Pacient {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
+        this.googleid = googleid;
+        this.image = image;
+    }
+
+    public String getGoogleid() {
+        return googleid;
+    }
+
+    public void setGoogleid(String googleid) {
+        this.googleid = googleid;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
@@ -96,6 +116,8 @@ public class Pacient {
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", gender='" + gender + '\'' +
+                ", googleid='" + googleid + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

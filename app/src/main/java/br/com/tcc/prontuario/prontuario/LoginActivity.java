@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                         response.getError();
                         Log.e("FACEBOOK_JSON", object.toString());
 
-                        String name = "", email = "", birthdate = "", fbid = "";
+                        String name = "", email = "", birthdate = "", fbid = "", url = "";
 
                         try {
                             fbid = object.getString("id");
@@ -194,8 +194,14 @@ public class LoginActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
+                        try {
+                            url = object.getJSONObject("picture").getJSONObject("data").getString("url");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                         Log.i("DADOS", fbid);
-                        final PacientFacebook pacient = new PacientFacebook(name, email, birthdate, fbid);
+                        final PacientFacebook pacient = new PacientFacebook(name, email, birthdate, fbid, url);
                         Call<PacientFacebook> call = new RetrofitConfig().getServices().signinPacientByFacebook(pacient);
 
                         call.enqueue(new Callback<PacientFacebook>() {
@@ -293,7 +299,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i("LOGIN_GOOGLE_PHOTO", account.getPhotoUrl().toString());
 
                 final PacientGoogle pacient = new PacientGoogle(account.getDisplayName(),
-                        account.getEmail(), account.getId());
+                        account.getEmail(), account.getId(), account.getPhotoUrl().toString());
                 Call<PacientGoogle> call = new RetrofitConfig().getServices().signinPacientByGoogle(pacient);
 
                 call.enqueue(new Callback<PacientGoogle>() {
