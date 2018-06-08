@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.apply();
 
         startActivity(home);
+        this.finish();
     }
 
     private void openHomePacientBySocialNetwork(String email) {
@@ -88,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.apply();
 
         startActivity(home);
+        this.finish();
     }
 
     private void openHomeMed() {
@@ -104,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.apply();
 
         startActivity(homeMed);
+        this.finish();
     }
 
     private void signupMed() {
