@@ -1,10 +1,13 @@
 package br.com.tcc.prontuario.prontuario;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -202,7 +205,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         Log.i("DADOS", fbid);
                         final PacientFacebook pacient = new PacientFacebook(name, email, birthdate, fbid, url);
-                        Call<PacientFacebook> call = new RetrofitConfig().getServices().signinPacientByFacebook(pacient);
+                        Call<PacientFacebook> call = new RetrofitConfig().getServices().checkPacientByFacebook(pacient);
 
                         call.enqueue(new Callback<PacientFacebook>() {
                             @Override
@@ -212,7 +215,11 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
                                             .show();
                                     Log.i("MENSAGEM", response.body().getMsg());
-                                    openHomePacientBySocialNetwork(pacient.getEmail());
+                                    if (response.body().isSignup()) {
+                                        showCpfConfirmationDialog(pacient);
+                                    } else {
+                                        openHomePacientBySocialNetwork(pacient.getEmail());
+                                    }
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Erro - Response", Toast.LENGTH_LONG).show();
                                 }
@@ -220,7 +227,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<PacientFacebook> call, Throwable t) {
-                                Log.e("RESPOSTA   ", "Erro:" + t.getMessage());
+                                Log.e("RESPOSTAFACE", "Erro:" + t.getMessage());
                                 Toast.makeText(getApplicationContext(), "Erro - Failure", Toast.LENGTH_LONG).show();
                             }
                         });
@@ -350,5 +357,47 @@ public class LoginActivity extends AppCompatActivity {
         EditText user = findViewById(R.id.username_text);
         String text = user.getText().toString();
         return text.length() == 5;
+    }
+
+    private void showCpfConfirmationDialog(final PacientFacebook pacient) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View alertView = inflater.inflate(R.layout.dialog_cpf_confirmation, null);
+        builder.setView(alertView);
+
+        final EditText cpfConfirmationText = alertView.findViewById(R.id.confirm_cpf_text);
+
+        builder.setPositiveButton("Inserir", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String cpf = cpfConfirmationText.getText().toString();
+                if (Validator.validateCpf(cpf)) {
+                    pacient.setCpf(cpf);
+                    Call<PacientFacebook> call = new RetrofitConfig().getServices().signinPacientByFacebook(pacient);
+                    call.enqueue(new Callback<PacientFacebook>() {
+                        @Override
+                        public void onResponse(Call<PacientFacebook> call, Response<PacientFacebook> response) {
+                            openHomePacientBySocialNetwork(pacient.getEmail());
+                        }
+
+                        @Override
+                        public void onFailure(Call<PacientFacebook> call, Throwable t) {
+                            Log.e("RESPOSTAINSERT   ", "Erro:" + t.getMessage());
+                            Toast.makeText(getApplicationContext(), "Erro - Failure", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+             }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

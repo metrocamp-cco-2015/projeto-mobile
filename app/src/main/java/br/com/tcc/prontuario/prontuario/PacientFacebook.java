@@ -9,12 +9,14 @@ import java.util.Date;
  */
 
 public class PacientFacebook {
+    private String cpf;
     private String name;
     private String email;
     private String birthdate;
     private String fbId;
     private String image;
     private String msg;
+    private boolean signup;
 
     public String getMsg() {
         return msg;
@@ -73,6 +75,22 @@ public class PacientFacebook {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public boolean isSignup() {
+        return signup;
+    }
+
+    public void setSignup(boolean signup) {
+        this.signup = signup;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     @Override

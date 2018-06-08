@@ -9,6 +9,9 @@ import retrofit2.http.POST;
  */
 
 public interface Services {
+    @POST("paciente/facebook/check")
+    Call<PacientFacebook> checkPacientByFacebook(@Body PacientFacebook pacient);
+
     @POST("paciente/facebook/new")
     Call<PacientFacebook> signinPacientByFacebook(@Body PacientFacebook pacient);
 
