@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,6 +72,7 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         handleButtons();
+        handleList();
     }
 
     private void handleButtons() {
@@ -98,6 +101,46 @@ public class HomeActivity extends AppCompatActivity
                     startActivity(intent);
                 }
             });
+        }
+    }
+
+    private void handleList() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
+        int userType = sharedPreferences.getInt(getString(R.string.user_type), -1);
+        String userId = sharedPreferences.getString(getString(R.string.user_id), "");
+
+        final ListView consultsList = findViewById(R.id.consults_list);
+        final TextView noConsultsText = findViewById(R.id.no_consults_text);
+
+        if (userType == SharedPreferencesKeysManager.MEDIC_USER_TYPE) {
+            Log.i("LISTA_MED", userId);
+            ConsultsPacient consultsPacient = new ConsultsPacient();
+            consultsPacient.setCrm(userId);
+            Call<ConsultsPacient> consults = new RetrofitConfig().getServices().getConsultsByCrm(consultsPacient);
+            consults.enqueue(new Callback<ConsultsPacient>() {
+                @Override
+                public void onResponse(Call<ConsultsPacient> call, Response<ConsultsPacient> response) {
+                    if (response.isSuccessful()) {
+                        ConsultsPacient data = response.body();
+                        if (data.getMsg() == null) {
+                            ConsultsPacientAdapter adapter = new ConsultsPacientAdapter(HomeActivity.this,
+                                    R.layout.card_pacient_consult, data.getConsults());
+                            consultsList.setAdapter(adapter);
+                        } else {
+                            noConsultsText.setText(data.getMsg());
+                            Log.i("MEDIC_LIST", "nada");
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ConsultsPacient> call, Throwable t) {
+                    Log.i("DEU_RUIM_LISTA_MED", t.getMessage());
+                }
+            });
+
+        } else if (userType == SharedPreferencesKeysManager.PACIENT_USER_TYPE) {
+
         }
     }
 

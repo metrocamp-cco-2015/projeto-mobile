@@ -29,4 +29,10 @@ public interface Services {
 
     @POST("medico/maps/add")
     Call<Medic> addMedicMaps(@Body Medic medic);
+
+    @POST("paciente/consultas")
+    Call<ConsultsMedic> getConsultsByCpf(@Body ConsultsMedic consults);
+
+    @POST("medico/consultas")
+    Call<ConsultsPacient> getConsultsByCrm(@Body ConsultsPacient consults);
 }

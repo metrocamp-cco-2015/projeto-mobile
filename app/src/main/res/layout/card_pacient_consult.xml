@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/consult_id_text_medical_card_consult"
+        android:id="@+id/consult_id_text_pacient_card_consult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -15,30 +15,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/crm_text_medical_card_consult"
+        android:id="@+id/cpf_text_pacient_card_consult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/consult_id_text_medical_card_consult"/>
+        app:layout_constraintTop_toBottomOf="@+id/consult_id_text_pacient_card_consult"/>
 
     <TextView
-        android:id="@+id/med_name_medical_card_consult"
+        android:id="@+id/name_pacient_card_consult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crm_text_medical_card_consult" />
+        app:layout_constraintTop_toBottomOf="@+id/cpf_text_pacient_card_consult" />
 
     <TextView
-        android:id="@+id/consult_date_medical_card_consult"
+        android:id="@+id/consult_date_pacient_card_consult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/med_name_medical_card_consult" />
+        app:layout_constraintTop_toBottomOf="@+id/med_name_pacient_card_consult" />
 
 </android.support.constraint.ConstraintLayout>
