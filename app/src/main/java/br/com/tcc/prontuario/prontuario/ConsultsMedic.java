@@ -3,6 +3,7 @@ package br.com.tcc.prontuario.prontuario;
 public class ConsultsMedic {
     private ConsultMedic[] consults;
     private String msg;
+    private String cpf;
 
     public ConsultsMedic(){}
 
@@ -20,5 +21,13 @@ public class ConsultsMedic {
 
     public String getMsg() {
         return msg;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

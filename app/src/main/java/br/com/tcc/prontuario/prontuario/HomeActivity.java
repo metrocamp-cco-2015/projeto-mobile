@@ -140,7 +140,31 @@ public class HomeActivity extends AppCompatActivity
             });
 
         } else if (userType == SharedPreferencesKeysManager.PACIENT_USER_TYPE) {
+            Log.i("LISTA_PACIENTE", userId);
+            ConsultsMedic consultsMedic = new ConsultsMedic();
+            consultsMedic.setCpf(userId);
+            Call<ConsultsMedic> consults = new RetrofitConfig().getServices().getConsultsByCpf(consultsMedic);
+            consults.enqueue(new Callback<ConsultsMedic>() {
+                @Override
+                public void onResponse(Call<ConsultsMedic> call, Response<ConsultsMedic> response) {
+                    if (response.isSuccessful()) {
+                        ConsultsMedic data = response.body();
+                        if (data.getMsg() == null) {
+                            ConsultsMedicAdapter adapter = new ConsultsMedicAdapter(HomeActivity.this,
+                                    R.layout.card_medical_consult, data.getConsults());
+                            consultsList.setAdapter(adapter);
+                        } else {
+                            noConsultsText.setText(data.getMsg());
+                            Log.i("MEDIC_LIST", "nada");
+                        }
+                    }
+                }
 
+                @Override
+                public void onFailure(Call<ConsultsMedic> call, Throwable t) {
+                    Log.i("DEU_RUIM_LISTA_PACIENTE", t.getMessage());
+                }
+            });
         }
     }
 
