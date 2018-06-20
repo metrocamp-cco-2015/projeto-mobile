@@ -35,4 +35,7 @@ public interface Services {
 
     @POST("medico/consultas")
     Call<ConsultsPacient> getConsultsByCrm(@Body ConsultsPacient consults);
+
+    @POST("consulta")
+    Call<ConsultData> getConsultById(@Body ConsultData consult);
 }

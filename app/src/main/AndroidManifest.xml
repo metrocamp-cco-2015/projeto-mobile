@@ -82,7 +82,8 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".MapsTest" />
         <activity android:name=".PacientProfileActivity" />
-        <activity android:name=".MedicProfileActivity"></activity>
+        <activity android:name=".MedicProfileActivity" />
+        <activity android:name=".ConsultsActivity"></activity>
     </application>
 
 </manifest>

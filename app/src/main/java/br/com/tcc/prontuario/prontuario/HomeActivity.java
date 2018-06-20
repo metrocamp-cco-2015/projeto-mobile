@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -126,6 +127,16 @@ public class HomeActivity extends AppCompatActivity
                             ConsultsPacientAdapter adapter = new ConsultsPacientAdapter(HomeActivity.this,
                                     R.layout.card_pacient_consult, data.getConsults());
                             consultsList.setAdapter(adapter);
+                            consultsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    ConsultPacient data = (ConsultPacient) adapterView.getAdapter().getItem(i);
+                                    String consultId = data.getId();
+                                    Intent intent = new Intent(HomeActivity.this, ConsultsActivity.class);
+                                    intent.putExtra("consult_id", consultId);
+                                    startActivity(intent);
+                                }
+                            });
                         } else {
                             noConsultsText.setText(data.getMsg());
                             Log.i("MEDIC_LIST", "nada");
@@ -153,6 +164,16 @@ public class HomeActivity extends AppCompatActivity
                             ConsultsMedicAdapter adapter = new ConsultsMedicAdapter(HomeActivity.this,
                                     R.layout.card_medical_consult, data.getConsults());
                             consultsList.setAdapter(adapter);
+                            consultsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    ConsultMedic data = (ConsultMedic) adapterView.getAdapter().getItem(i);
+                                    String consultId = data.getId();
+                                    Intent intent = new Intent(HomeActivity.this, ConsultsActivity.class);
+                                    intent.putExtra("consult_id", consultId);
+                                    startActivity(intent);
+                                }
+                            });
                         } else {
                             noConsultsText.setText(data.getMsg());
                             Log.i("MEDIC_LIST", "nada");
