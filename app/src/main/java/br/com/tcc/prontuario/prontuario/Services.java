@@ -44,4 +44,10 @@ public interface Services {
 
     @POST("login/medico")
     Call<LoginData> signInMedic(@Body LoginData loginData);
+
+    @POST("medico/new")
+    Call<SignUpData> signUpMedic(@Body SignUpData loginData);
+
+    @POST("paciente/new")
+    Call<SignUpData> signUpPacient(@Body SignUpData loginData);
 }

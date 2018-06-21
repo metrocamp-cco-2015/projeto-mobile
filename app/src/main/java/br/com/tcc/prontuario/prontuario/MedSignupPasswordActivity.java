@@ -3,10 +3,15 @@ package br.com.tcc.prontuario.prontuario;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MedSignupPasswordActivity extends AppCompatActivity {
 
@@ -25,13 +30,41 @@ public class MedSignupPasswordActivity extends AppCompatActivity {
     }
 
     private void nextScreen() {
-        /**
-         *  Criar a tela de DASHBOARD
-         */
         if (validateFields()) {
-            Intent intent = new Intent(MedSignupPasswordActivity.this,
+            EditText passwordText = findViewById(R.id.med_signup_password_text);
+
+            Bundle bundle = getIntent().getExtras();
+
+            final Intent intent = new Intent(MedSignupPasswordActivity.this,
                     LoginActivity.class);
-            startActivity(intent);
+
+            String name = bundle.getString("name");
+            String password = passwordText.getText().toString();
+            String crm = bundle.getString("crm");
+            String email = bundle.getString("email");
+            String phone = bundle.getString("phone");
+            String birthdate = bundle.getString("birthdate");
+            char gender = bundle.getChar("gender");
+
+            SignUpData signUpData = new SignUpData(email, name, birthdate, password, phone, gender);
+            signUpData.setCrm(crm);
+
+            Call<SignUpData> call = new RetrofitConfig().getServices().signUpMedic(signUpData);
+            call.enqueue(new Callback<SignUpData>() {
+                @Override
+                public void onResponse(Call<SignUpData> call, Response<SignUpData> response) {
+                    SignUpData data = response.body();
+                    if (response.isSuccessful()) {
+                        startActivity(intent);
+                    }
+                    Toast.makeText(MedSignupPasswordActivity.this.getApplicationContext(), data.getMsg(), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<SignUpData> call, Throwable t) {
+                    Log.i("DEU_RUIM_SIGN_UP_MED", t.getMessage());
+                }
+            });
         }
     }
 
