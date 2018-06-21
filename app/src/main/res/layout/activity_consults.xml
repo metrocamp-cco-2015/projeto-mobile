@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.tcc.prontuario.prontuario.ConsultsActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/regular_data_layout"
+        android:layout_width="369dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/consult_id_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/consult_medic_crm_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_id_text" />
+
+        <TextView
+            android:id="@+id/consult_medic_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_medic_crm_text" />
+
+        <TextView
+            android:id="@+id/consult_pacient_cpf_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_medic_name_text" />
+
+        <TextView
+            android:id="@+id/consult_pacient_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_pacient_cpf_text" />
+
+        <TextView
+            android:id="@+id/consult_pacient_height_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_pacient_name_text" />
+
+        <TextView
+            android:id="@+id/consult_pacient_weight_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_pacient_height_text" />
+
+        <TextView
+            android:id="@+id/consult_pacient_blood_pressure_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_pacient_weight_text" />
+
+        <TextView
+            android:id="@+id/consult_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_pacient_blood_pressure_text" />
+
+        <TextView
+            android:id="@+id/consult_pacient_symptoms_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="ssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssss"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_date_text" />
+
+        <TextView
+            android:id="@+id/consult_pacient_diagnosis_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="ssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssss"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_pacient_symptoms_text" />
+
+        <TextView
+            android:id="@+id/consult_pacient_treatment_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="ssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssss"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consult_pacient_diagnosis_text" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

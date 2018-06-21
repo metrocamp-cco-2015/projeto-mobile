@@ -6,14 +6,33 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class RegisterIdentificationStep2Activity extends AppCompatActivity {
 
     private void nextPage(){
         if (validateFields()) {
+            EditText birthdateText = findViewById(R.id.register_identification_birth_date);
+            RadioGroup genderRadio = findViewById(R.id.radioGroup);
+            String birthdate = birthdateText.getText().toString();
+            char gender = 'M';
+            int radioButtonID = genderRadio.getCheckedRadioButtonId();
+            if (radioButtonID == R.id.register_identification_woman) {
+                gender = 'F';
+            }
+
             Intent intent = new Intent(RegisterIdentificationStep2Activity.this,
                     RegisterIdentificationStep3Activity.class);
+
+            Bundle bundle = getIntent().getExtras();
+
+            intent.putExtra("email", bundle.getString("email"));
+            intent.putExtra("name", bundle.getString("name"));
+            intent.putExtra("cpf", bundle.getString("cpf"));
+            intent.putExtra("birthdate", birthdate);
+            intent.putExtra("gender", gender);
+
             startActivity(intent);
         }
     }

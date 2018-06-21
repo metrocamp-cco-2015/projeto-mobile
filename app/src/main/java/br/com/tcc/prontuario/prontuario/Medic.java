@@ -1,33 +1,29 @@
 package br.com.tcc.prontuario.prontuario;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 /**
- * Created by 1510031171 on 05/06/2018.
+ * Created by 1510031171 on 17/05/2018.
  */
 
-@JsonIgnoreProperties({"fbid"})
-public class Pacient {
-    private String cpf;
+public class Medic {
+    private String crm;
     private String email;
     private String name;
     private String birthdate;
     private String password;
     private String phoneNumber;
     private String gender;
-    private String googleid;
-    private String image;
+    private String maps;
 
-    public Pacient () {
+    public Medic () {
 
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCrm() {
+        return crm;
     }
 
-    public void setCpf(String crm) {
-        this.cpf = crm;
+    public void setCrm(String crm) {
+        this.crm = crm;
     }
 
     public String getEmail() {
@@ -78,46 +74,36 @@ public class Pacient {
         this.gender = gender;
     }
 
-    public Pacient(String cpf, String email, String name, String birthdate, String password, String phoneNumber, String gender, String googleid, String image) {
-        this.cpf = cpf;
+    public String getMaps() {
+        return maps;
+    }
+
+    public void setMaps(String maps) {
+        this.maps = maps;
+    }
+
+    public Medic(String crm, String email, String name, String birthdate, String password, String phoneNumber, String gender, String maps) {
+        this.crm = crm;
         this.email = email;
         this.name = name;
         this.birthdate = birthdate;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
-        this.googleid = googleid;
-        this.image = image;
-    }
-
-    public String getGoogleid() {
-        return googleid;
-    }
-
-    public void setGoogleid(String googleid) {
-        this.googleid = googleid;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+        this.maps = maps;
     }
 
     @Override
     public String toString() {
-        return "Pacient{" +
-                "cpf='" + cpf + '\'' +
+        return "Medic{" +
+                "crm='" + crm + '\'' +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", birthdate='" + birthdate + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", gender='" + gender + '\'' +
-                ", googleid='" + googleid + '\'' +
-                ", image='" + image + '\'' +
+                ", maps='" + maps + '\'' +
                 '}';
     }
 }

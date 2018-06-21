@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class MedSignupPersonalDataActivity extends AppCompatActivity {
@@ -29,8 +30,27 @@ public class MedSignupPersonalDataActivity extends AppCompatActivity {
 
     private void nextScreen() {
         if (validateFields()) {
+            EditText birthdateText = findViewById(R.id.med_signup_birthdate_text);
+            RadioGroup genderRadio = findViewById(R.id.med_signup_gender_radio_group);
+            String birthdate = birthdateText.getText().toString();
+            char gender = 'M';
+            int radioButtonID = genderRadio.getCheckedRadioButtonId();
+            if (radioButtonID == R.id.med_signup_gender_female_radio) {
+                gender = 'F';
+            }
+
             Intent intent = new Intent(MedSignupPersonalDataActivity.this,
                     MedSignupPasswordActivity.class);
+
+            Bundle bundle = getIntent().getExtras();
+
+            intent.putExtra("name", bundle.getString("name"));
+            intent.putExtra("crm", bundle.getString("crm"));
+            intent.putExtra("email", bundle.getString("email"));
+            intent.putExtra("phone", bundle.getString("phone"));
+            intent.putExtra("birthdate", birthdate);
+            intent.putExtra("gender", gender);
+
             startActivity(intent);
         }
     }

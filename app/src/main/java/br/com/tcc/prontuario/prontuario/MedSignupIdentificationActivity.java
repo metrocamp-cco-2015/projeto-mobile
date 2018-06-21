@@ -26,9 +26,19 @@ public class MedSignupIdentificationActivity extends AppCompatActivity {
     }
 
     private void nextScreen() {
+        // TODO Remover o campo CPF dessa tela
         if (validateFields()) {
+            EditText nameText = findViewById(R.id.med_signup_name_text);
+            EditText crmText = findViewById(R.id.med_signup_crm_text);
+            String name = nameText.getText().toString();
+            String crm = crmText.getText().toString();
+
             Intent intent = new Intent(MedSignupIdentificationActivity.this,
                     MedSignupContactActivity.class);
+
+            intent.putExtra("name", name);
+            intent.putExtra("crm", crm);
+
             startActivity(intent);
         }
     }
