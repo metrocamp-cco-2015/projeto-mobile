@@ -18,6 +18,9 @@ public interface Services {
     @POST("paciente/google/new")
     Call<PacientGoogle> signinPacientByGoogle(@Body PacientGoogle pacient);
 
+    @POST("paciente/google/check")
+    Call<PacientGoogle> checkPacientByGoogle(@Body PacientGoogle pacient);
+
     @POST("medico/crm")
     Call<Medic> getMedicByCrm(@Body Medic medic);
 

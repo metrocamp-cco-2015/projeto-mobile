@@ -354,7 +354,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 final PacientGoogle pacient = new PacientGoogle(account.getDisplayName(),
                         account.getEmail(), account.getId(), account.getPhotoUrl().toString());
-                Call<PacientGoogle> call = new RetrofitConfig().getServices().signinPacientByGoogle(pacient);
+                Call<PacientGoogle> call = new RetrofitConfig().getServices().checkPacientByGoogle(pacient);
 
                 call.enqueue(new Callback<PacientGoogle>() {
                     @Override
@@ -364,7 +364,11 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "LOGADO COM SUCESSO!", Toast.LENGTH_LONG)
                                     .show();
                             Log.i("MENSAGEM", response.body().getMsg());
-                            openHomePacientBySocialNetwork(pacient.getEmail());
+                            if (response.body().isSignup()) {
+                                showCpfConfirmationDialog(pacient);
+                            } else {
+                                openHomePacientBySocialNetwork(pacient.getEmail());
+                            }
                         } else {
                             Toast.makeText(getApplicationContext(), "Erro - Response", Toast.LENGTH_LONG).show();
                         }
@@ -435,6 +439,48 @@ public class LoginActivity extends AppCompatActivity {
                     });
                 }
              }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void showCpfConfirmationDialog(final PacientGoogle pacient) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View alertView = inflater.inflate(R.layout.dialog_cpf_confirmation, null);
+        builder.setView(alertView);
+
+        final EditText cpfConfirmationText = alertView.findViewById(R.id.confirm_cpf_text);
+
+        builder.setPositiveButton("Inserir", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String cpf = cpfConfirmationText.getText().toString();
+                if (Validator.validateCpf(cpf)) {
+                    pacient.setCpf(cpf);
+                    Call<PacientGoogle> call = new RetrofitConfig().getServices().signinPacientByGoogle(pacient);
+                    call.enqueue(new Callback<PacientGoogle>() {
+                        @Override
+                        public void onResponse(Call<PacientGoogle> call, Response<PacientGoogle> response) {
+                            openHomePacientBySocialNetwork(pacient.getEmail());
+                        }
+
+                        @Override
+                        public void onFailure(Call<PacientGoogle> call, Throwable t) {
+                            Log.e("RESPOSTAINSERT   ", "Erro:" + t.getMessage());
+                            Toast.makeText(getApplicationContext(), "Erro - Failure", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
         });
 
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

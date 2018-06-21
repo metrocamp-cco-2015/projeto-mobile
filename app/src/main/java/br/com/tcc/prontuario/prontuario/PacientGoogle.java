@@ -5,11 +5,13 @@ package br.com.tcc.prontuario.prontuario;
  */
 
 public class PacientGoogle {
+    private String cpf;
     private String name;
     private String email;
     private String googleid;
     private String image;
     private String msg;
+    private boolean signup;
 
     public String getMsg() {
         return msg;
@@ -59,6 +61,22 @@ public class PacientGoogle {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public boolean isSignup() {
+        return signup;
+    }
+
+    public void setSignup(boolean signup) {
+        this.signup = signup;
     }
 
     @Override
