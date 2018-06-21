@@ -26,7 +26,6 @@ public class MedSignupIdentificationActivity extends AppCompatActivity {
     }
 
     private void nextScreen() {
-        // TODO Remover o campo CPF dessa tela
         if (validateFields()) {
             EditText nameText = findViewById(R.id.med_signup_name_text);
             EditText crmText = findViewById(R.id.med_signup_crm_text);
@@ -44,24 +43,16 @@ public class MedSignupIdentificationActivity extends AppCompatActivity {
     }
 
     private boolean validateFields() {
-        EditText cpfText = findViewById(R.id.med_signup_cpf_text);
         EditText nameText = findViewById(R.id.med_signup_name_text);
         EditText crmText = findViewById(R.id.med_signup_crm_text);
 
         String errorMessage = "";
-        String cpf = cpfText.getText().toString();
         String name = nameText.getText().toString();
         String crm = crmText.getText().toString();
         boolean result = false;
-
-        if (!Validator.isFieldEmpty(cpf) &&
-                !Validator.isFieldEmpty(name) &&
+        if (!Validator.isFieldEmpty(name) &&
                 !Validator.isFieldEmpty(crm)) {
-            if (Validator.validateCpf(cpfText.getText().toString())) {
-                result = true;
-            } else {
-                errorMessage = getString(R.string.error_invalid_cpf);
-            }
+            result = true;
         } else {
             errorMessage = getString(R.string.error_empty_fields);
         }

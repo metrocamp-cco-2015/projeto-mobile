@@ -27,6 +27,9 @@ public class RegisterIdentificationStep2Activity extends AppCompatActivity {
 
             Bundle bundle = getIntent().getExtras();
 
+            String[] split = birthdate.split("/");
+            birthdate = split[2]+"-"+split[1]+"-"+split[0];
+
             intent.putExtra("email", bundle.getString("email"));
             intent.putExtra("name", bundle.getString("name"));
             intent.putExtra("cpf", bundle.getString("cpf"));

@@ -122,14 +122,14 @@ public class LoginActivity extends AppCompatActivity {
         this.finish();
     }
 
-    private void openHomePacientBySocialNetwork(String email) {
+    private void openHomePacientBySocialNetwork(String cpf) {
         Intent home = new Intent(LoginActivity.this, HomeActivity.class);
-        Log.e("EMAIL", email);
+        Log.e("CPF", cpf);
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(getString(R.string.user_id), email);
+        editor.putString(getString(R.string.user_id), cpf);
         editor.putInt(getString(R.string.user_type), SharedPreferencesKeysManager.PACIENT_USER_TYPE);
-        editor.putInt(getString(R.string.user_id_type), SharedPreferencesKeysManager.EMAIL);
+        editor.putInt(getString(R.string.user_id_type), SharedPreferencesKeysManager.CPF);
         editor.apply();
 
         startActivity(home);
@@ -265,7 +265,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if (response.body().isSignup()) {
                                         showCpfConfirmationDialog(pacient);
                                     } else {
-                                        openHomePacientBySocialNetwork(pacient.getEmail());
+                                        openHomePacientBySocialNetwork(response.body().getCpf());
                                     }
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Erro - Response", Toast.LENGTH_LONG).show();
@@ -367,7 +367,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (response.body().isSignup()) {
                                 showCpfConfirmationDialog(pacient);
                             } else {
-                                openHomePacientBySocialNetwork(pacient.getEmail());
+                                openHomePacientBySocialNetwork(response.body().getCpf());
                             }
                         } else {
                             Toast.makeText(getApplicationContext(), "Erro - Response", Toast.LENGTH_LONG).show();

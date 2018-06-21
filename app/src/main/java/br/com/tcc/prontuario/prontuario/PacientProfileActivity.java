@@ -32,6 +32,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,6 +90,8 @@ public class PacientProfileActivity extends AppCompatActivity {
                             txtCpf.setText(pacient.getCpf() != null ? pacient.getCpf() : "EMPTY");
                             txtGender.setText(pacient.getGender() != null ? pacient.getGender() : "EMPTY");
                             txtPhone.setText(pacient.getPhoneNumber() != null ? pacient.getPhoneNumber() : "EMPTY");
+                            if (pacient.getImage() != null)
+                                Picasso.get().load(pacient.getImage()).resize(200, 200).into(profileImage);
 
                             Log.e("DEU_BOM", pacient.getCpf());
 

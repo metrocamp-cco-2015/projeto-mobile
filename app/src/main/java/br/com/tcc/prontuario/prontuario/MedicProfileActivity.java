@@ -96,7 +96,7 @@ public class MedicProfileActivity extends AppCompatActivity
                         txtCpf.setText(medic.getCrm() != null ? medic.getCrm() : "EMPTY");
                         txtGender.setText(medic.getGender() != null ? medic.getGender() : "EMPTY");
                         txtPhone.setText(medic.getPhoneNumber() != null ? medic.getPhoneNumber() : "EMPTY");
-                        txtMaps.setText(medic.getMaps() != null ? medic.getMaps() : "EMPTY");
+                        txtMaps.setText(medic.getMaps() != null ? medic.getMaps() : "Sem local de trabalho cadastrado");
 
                         Log.e("DEU_BOM", medic.getCrm());
 

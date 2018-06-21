@@ -44,6 +44,9 @@ public class MedSignupPersonalDataActivity extends AppCompatActivity {
 
             Bundle bundle = getIntent().getExtras();
 
+            String[] split = birthdate.split("/");
+            birthdate = split[2]+"-"+split[1]+"-"+split[0];
+
             intent.putExtra("name", bundle.getString("name"));
             intent.putExtra("crm", bundle.getString("crm"));
             intent.putExtra("email", bundle.getString("email"));

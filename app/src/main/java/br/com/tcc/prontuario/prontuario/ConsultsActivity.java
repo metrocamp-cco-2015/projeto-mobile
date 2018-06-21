@@ -56,17 +56,17 @@ public class ConsultsActivity extends AppCompatActivity {
         TextView pacientDiagnosisText = findViewById(R.id.consult_pacient_diagnosis_text);
         TextView pacientTreatmentText = findViewById(R.id.consult_pacient_treatment_text);
 
-        consultIdText.setText(data.getId());
-        medicCrmText.setText(data.getCrm());
-        medicNameText.setText(data.getMedicName());
-        pacientCpfText.setText(data.getCpf());
-        pacientNameText.setText(data.getPacientName());
-        pacientHeightText.setText(data.getPacientHeight());
-        pacientWeightText.setText(data.getPacientWeight());
-        pacientBloodPressureText.setText(data.getPacientBloodPressure());
-        consultDateText.setText(data.getDate());
-        pacientSymptomsText.setText(data.getSymptom());
-        pacientDiagnosisText.setText(data.getDiagnosis());
-        pacientTreatmentText.setText(data.getTreatment());
+        consultIdText.setText(consultIdText.getText() + data.getId());
+        medicCrmText.setText(medicCrmText.getText() + data.getCrm());
+        medicNameText.setText(medicNameText.getText() + data.getMedicName());
+        pacientCpfText.setText(pacientCpfText.getText() + data.getCpf());
+        pacientNameText.setText(pacientNameText.getText() + data.getPacientName());
+        pacientHeightText.setText(pacientHeightText.getText() + data.getPacientHeight());
+        pacientWeightText.setText(pacientWeightText.getText() + data.getPacientWeight());
+        pacientBloodPressureText.setText(pacientBloodPressureText.getText() + data.getPacientBloodPressure());
+        consultDateText.setText(consultDateText.getText() + data.getDate());
+        pacientSymptomsText.setText(pacientSymptomsText.getText() + data.getSymptom());
+        pacientDiagnosisText.setText(pacientDiagnosisText.getText() + data.getDiagnosis());
+        pacientTreatmentText.setText(pacientTreatmentText.getText() + data.getTreatment());
     }
 }

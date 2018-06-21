@@ -25,7 +25,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            android:text="ID da consulta: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +36,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            android:text="CRM do médico: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_id_text" />
 
@@ -47,7 +47,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            android:text="Nome do médico: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_medic_crm_text" />
 
@@ -58,7 +58,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            android:text="CPF do paciente: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_medic_name_text" />
 
@@ -69,7 +69,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            android:text="Nome do paciente: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_pacient_cpf_text" />
 
@@ -80,7 +80,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            android:text="Altura (m): "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_pacient_name_text" />
 
@@ -91,7 +91,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            android:text="Peso (kg): "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_pacient_height_text" />
 
@@ -102,7 +102,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            android:text="Pressão arterial: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_pacient_weight_text" />
 
@@ -113,7 +113,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="asdasjdlsjadlasjdljasldjasljdasl"
+            android:text="Data da consulta: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_pacient_blood_pressure_text" />
 
@@ -124,7 +124,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="ssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssss"
+            android:text="Sintomas: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_date_text" />
 
@@ -135,7 +135,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="ssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssss"
+            android:text="Diagnóstico: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_pacient_symptoms_text" />
 
@@ -146,7 +146,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:text="ssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssssssssssssssssvvvvvvvvvvvvvvaaaaaaaaaaaavvvssss"
+            android:text="Tratamento: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/consult_pacient_diagnosis_text" />
 
