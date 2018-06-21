@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ConsultData {
     @JsonProperty("ID")
     private String id;
-    @JsonProperty("crm")
+    @JsonProperty("CRM")
     private String crm;
-    @JsonProperty("cpf")
+    @JsonProperty("CPF")
     private String cpf;
-    @JsonProperty("medic_name")
+    @JsonProperty("NOME_MEDICO")
     private String medicName;
-    @JsonProperty("pacient_name")
+    @JsonProperty("NOME_PACIENTE")
     private String pacientName;
     @JsonProperty("DATA_CONSULTA")
     private String date;

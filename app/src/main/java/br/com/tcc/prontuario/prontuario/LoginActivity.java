@@ -69,10 +69,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginData> call, Response<LoginData> response) {
                 LoginData data = response.body();
+                String message = "Login inválido!";
                 if (response.isSuccessful()) {
+                    message = data.getMsg();
                     openHomeMed();
                 }
-                Toast.makeText(LoginActivity.this.getApplicationContext(), data.getMsg(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this.getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -89,10 +91,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginData> call, Response<LoginData> response) {
                 LoginData data = response.body();
+                String message = "Login inválido!";
                 if (response.isSuccessful()) {
+                    message = data.getMsg();
                     openHomePacient();
                 }
-                Toast.makeText(LoginActivity.this.getApplicationContext(), data.getMsg(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this.getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             }
 
             @Override
