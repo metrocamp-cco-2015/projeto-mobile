@@ -38,4 +38,10 @@ public interface Services {
 
     @POST("consulta")
     Call<ConsultData> getConsultById(@Body ConsultData consult);
+
+    @POST("login/paciente")
+    Call<LoginData> signInPacient(@Body LoginData loginData);
+
+    @POST("login/medico")
+    Call<LoginData> signInMedic(@Body LoginData loginData);
 }

@@ -55,11 +55,51 @@ public class LoginActivity extends AppCompatActivity {
             validation.setVisibility(View.VISIBLE);
         }else{
             if (isMedic()) {
-                openHomeMed();
+                checkLoginMedic(user.getText().toString(), password.getText().toString());
             } else if (isPacient()) {
-                openHomePacient();
+                checkLoginPacient(user.getText().toString(), password.getText().toString());
             }
         }
+    }
+
+    private void checkLoginMedic(String user, String pass) {
+        LoginData loginData = new LoginData(user, pass);
+        Call<LoginData> call = new RetrofitConfig().getServices().signInMedic(loginData);
+        call.enqueue(new Callback<LoginData>() {
+            @Override
+            public void onResponse(Call<LoginData> call, Response<LoginData> response) {
+                LoginData data = response.body();
+                if (response.isSuccessful()) {
+                    openHomeMed();
+                }
+                Toast.makeText(LoginActivity.this.getApplicationContext(), data.getMsg(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<LoginData> call, Throwable t) {
+                Log.i("DEU_RUIM_LOGIN_MED", t.getMessage());
+            }
+        });
+    }
+
+    private void checkLoginPacient(String user, String pass) {
+        LoginData loginData = new LoginData(user, pass);
+        Call<LoginData> call = new RetrofitConfig().getServices().signInPacient(loginData);
+        call.enqueue(new Callback<LoginData>() {
+            @Override
+            public void onResponse(Call<LoginData> call, Response<LoginData> response) {
+                LoginData data = response.body();
+                if (response.isSuccessful()) {
+                    openHomePacient();
+                }
+                Toast.makeText(LoginActivity.this.getApplicationContext(), data.getMsg(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<LoginData> call, Throwable t) {
+                Log.i("DEU_RUIM_LOGIN_PACIENTE", t.getMessage());
+            }
+        });
     }
 
     private void openHomePacient() {
