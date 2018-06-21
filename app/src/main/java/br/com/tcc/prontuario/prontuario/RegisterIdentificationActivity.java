@@ -12,7 +12,19 @@ public class RegisterIdentificationActivity extends AppCompatActivity {
 
     private void redirectToRegisterStep2(){
         if (validateFields()) {
+            EditText cpfText = findViewById(R.id.register_cpf);
+            EditText nameText = findViewById(R.id.register_name);
+            EditText emailText = findViewById(R.id.register_email);
+            String name = nameText.getText().toString();
+            String cpf = cpfText.getText().toString();
+            String email = emailText.getText().toString();
+
             Intent registerStep2 = new Intent(RegisterIdentificationActivity.this, RegisterIdentificationStep2Activity.class);
+
+            registerStep2.putExtra("email", email);
+            registerStep2.putExtra("name", name);
+            registerStep2.putExtra("cpf", cpf);
+
             startActivity(registerStep2);
         }
     }
